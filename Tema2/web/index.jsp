@@ -25,17 +25,16 @@
     <input type="text" name="name" size="20" value=""/> <br/>
       <br/>
 
-      Are you a robot?:
+      I am not a robot:
       <br/>
       <img src="http://localhost:8080/captcha">
       <br/>
-      <input type="text" name="capcha">
+      <input type="text" name="code">
       <br/>
       <br/>
-
-
     <input type="submit" name="submit" value="record">
   </form>
+
 
   </body>
 </html>

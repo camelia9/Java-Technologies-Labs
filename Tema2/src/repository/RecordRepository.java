@@ -18,11 +18,20 @@ public class RecordRepository {
         recordList = records;
     }
 
+    public boolean canBeAdded(Record record){
+        if(recordList.contains(record)){
+            return false;
+        }
+        return true;
+    }
+
     public void addRecordToList(Record record){
+
         recordList.add(record);
     }
 
     public List<Record> getRecordList(){
         return recordList;
     }
+
 }
