@@ -11,17 +11,31 @@
     <title>Input</title>
   </head>
   <body>
-  <form method="POST" action="RecordServlet">
+  <form method="POST" action="/record">
     Category:
+      <br/>
     <input type="text" name="category" size="20" value=""/> <br/>
-    <br/>
+      <br/>
     Key:
+      <br/>
     <input type="text" name="key" size="20" value=""/> <br/>
-    <br/>
+      <br/>
     Name:
+      <br/>
     <input type="text" name="name" size="20" value=""/> <br/>
+      <br/>
 
-    <input type="submit" name="submit" value="login">
+      Are you a robot?:
+      <br/>
+      <img src="http://localhost:8080/captcha">
+      <br/>
+      <input type="text" name="capcha">
+      <br/>
+      <br/>
+
+
+    <input type="submit" name="submit" value="record">
   </form>
+
   </body>
 </html>
