@@ -10,26 +10,35 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.Random;
 
 @WebServlet(name = "CaptchaServlet")
 public class CaptchaServlet extends HttpServlet {
+
+    private String generateRandomString(int length){
+        StringBuilder randomString = new StringBuilder();
+
+        int sourceGenerator[][] = new int[][]{
+            {(int)'a', ('z' - 'a') + 1},
+            {(int)'A', ('Z' - 'A') + 1},
+            {(int)'0', ('9' - '0') + 1}
+        };
+
+        for (int i = 0; i < length; ++i){
+            int idx = ThreadLocalRandom.current().nextInt(0, 2);
+            randomString.append(
+                    (char)(sourceGenerator[idx][0] + ThreadLocalRandom.current().nextInt(0, sourceGenerator[idx][1])));
+        }
+        return randomString.toString();
+    }
+
     protected void processRequest(HttpServletRequest request,
                                   HttpServletResponse response)
             throws ServletException, IOException {
 
         int width = 150;
         int height = 50;
-
-        char data[][] = {
-                { 'z', 'e', 't', 'c', 'o', 'd', 'e' },
-                { 'l', 'i', 'n', 'u', 'x' },
-                {'p','i','c','k','l','e'},
-                { 'c', 'a', 'm', 'i', 'b', 'e', 's', 't' },
-                { 'u', 'b', 'u', 'n', 't', 'u' },
-                { 'j', 'e', 'e' }
-        };
-
 
         BufferedImage bufferedImage = new BufferedImage(width, height,
                 BufferedImage.TYPE_INT_RGB);
@@ -56,19 +65,16 @@ public class CaptchaServlet extends HttpServlet {
 
         g2d.setColor(new Color(255, 255, 255));
 
-        Random r = new Random();
-        int index = Math.abs(r.nextInt()) % 5;
-
-        String captcha = String.copyValueOf(data[index]);
+        String captcha = generateRandomString(ThreadLocalRandom.current().nextInt(5, 10));
         request.getSession().setAttribute("captcha", captcha );
 
         int x = 0;
         int y = 0;
 
-        for (int i=0; i<data[index].length; i++) {
-            x += 10 + (Math.abs(r.nextInt()) % 15);
-            y = 20 + Math.abs(r.nextInt()) % 20;
-            g2d.drawChars(data[index], i, 1, x, y);
+        for (int i = 0; i < captcha.length(); ++i) {
+            x += 10 + ThreadLocalRandom.current().nextInt(15);
+            y = 20 + ThreadLocalRandom.current().nextInt(20);
+            g2d.drawChars(captcha.toCharArray(), i, 1, x, y);
         }
 
         g2d.dispose();
