@@ -24,10 +24,18 @@
         tr:nth-child(even) {
             background-color: #dddddd;
         }
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+        body {font-family: Arial, Helvetica, sans-serif;}
+        * {box-sizing: border-box}
     </style>
     <title>Title</title>
 </head>
 <body>
+<h1>User List</h1>
+<hr>
 <table>
     <tr>
         <th>Category</th>
