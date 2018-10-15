@@ -8,21 +8,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>Input</title>
+    <title>Sign Up</title>
   </head>
   <body>
   <form method="POST" action="/record">
-    Category:
+    User:
       <br/>
-    <input type="text" name="category" size="20" value=""/> <br/>
+    <input type="text" name="username" size="20" value=""/> <br/>
       <br/>
-    Key:
+    Email:
       <br/>
-    <input type="text" name="key" size="20" value=""/> <br/>
+    <input type="text" name="email" size="20" value=""/> <br/>
       <br/>
-    Name:
+    Password:
       <br/>
-    <input type="text" name="name" size="20" value=""/> <br/>
+    <input type="password" name="password" size="20" value=""/> <br/>
       <br/>
 
       I am not a robot:
@@ -34,7 +34,7 @@
       <br/>
     <input type="submit" name="submit" value="record">
   </form>
-
+  <p>Already have an account? Go <a href="http://localhost:8080/signin.jsp">here</a></p>
 
   </body>
 </html>
