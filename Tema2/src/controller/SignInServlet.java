@@ -63,7 +63,8 @@ public class SignInServlet extends HttpServlet {
         Login login = new Login(username, password);
         Record record = getUserData(login);
         if (record == null){
-            // TODO send to error page
+            request.setAttribute("error", "Login failed");
+            request.getRequestDispatcher("/error.jsp").forward(request,response);
         }else{
             String token = generateCookie(login);
             request.setAttribute("user", record);

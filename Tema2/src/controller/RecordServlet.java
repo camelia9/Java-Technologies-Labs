@@ -30,19 +30,19 @@ public class RecordServlet extends HttpServlet {
         }
         else
         {
-            if(!records.canBeAdded(record)){
+            if(records.getRecordList().contains(record)){
                 request.setAttribute("error", "Record already exists");
                 request.getRequestDispatcher("/error.jsp").forward(request,response);
             }
             else{
                 records.addRecord(record);
 
-                /*StringBuilder stringBuilder = new StringBuilder();
+                StringBuilder stringBuilder = new StringBuilder();
                 for(Record r : records.getRecordList()){
                     stringBuilder.append("<tr> <td>" + r.getUsername() + " </td> <td> " + r.getEmail() +  "</td> </tr>" );
                 }
                 request.setAttribute("recordList", stringBuilder.toString());
-                request.getRequestDispatcher("/result.jsp").forward(request,response);*/
+                //request.getRequestDispatcher("/result.jsp").forward(request,response);
                 response.sendRedirect("/signin");
             }
 
