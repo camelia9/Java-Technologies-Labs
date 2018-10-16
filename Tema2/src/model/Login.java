@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Login {
 
     private String username;
@@ -28,5 +30,10 @@ public class Login {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, password);
     }
 }
