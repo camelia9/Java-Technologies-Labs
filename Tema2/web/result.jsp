@@ -13,11 +13,15 @@
             font-family: arial, sans-serif;
             border-collapse: collapse;
             width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center
+
         }
 
         td, th {
             border: 1px solid #dddddd;
-            text-align: left;
+            text-align: center;
             padding: 8px;
         }
 
@@ -31,19 +35,20 @@
         body {font-family: Arial, Helvetica, sans-serif;}
         * {box-sizing: border-box}
     </style>
-    <title>Title</title>
+    <title>User List</title>
 </head>
 <body>
 <h1>User List</h1>
 <hr>
 <table>
     <tr>
-        <th>Category</th>
-        <th>Key</th>
-        <th>Name</th>
+        <th>User</th>
+        <th>Mail</th>
+        <th>Password</th>
     </tr>
     ${recordList}
 </table>
 
 </body>
 </html>
+

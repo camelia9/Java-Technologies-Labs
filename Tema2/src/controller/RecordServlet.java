@@ -13,9 +13,9 @@ import java.io.IOException;
 @WebServlet(name = "RecordServlet")
 public class RecordServlet extends HttpServlet {
 
-    public RecordRepository records = new RecordRepository();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RecordRepository records = new RecordRepository();
         String category = request.getParameter("username");
         String key = request.getParameter("email");
         String name = request.getParameter("password");
@@ -30,7 +30,7 @@ public class RecordServlet extends HttpServlet {
         }
         else
         {
-            if(records.getRecordList().contains(record)){
+            if(!records.canBeAdded(record)){
                 request.setAttribute("error", "Record already exists");
                 request.getRequestDispatcher("/error.jsp").forward(request,response);
             }

@@ -1,17 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <style>
-    body {font-family: Arial, Helvetica, sans-serif;}
+    <style>
+    body {font-family: Arial, Helvetica, sans-serif;
+        align-items: center;
+    }
     * {box-sizing: border-box}
 
     /* Full-width input fields */
     input[type=text], input[type=password] {
-        width: 100%;
+        width: 40%;
         padding: 15px;
         margin: 5px 0 22px 0;
         display: inline-block;
         border: none;
         background: #f1f1f1;
+
     }
 
     input[type=text]:focus, input[type=password]:focus {
@@ -32,7 +36,7 @@
         margin: 8px 0;
         border: none;
         cursor: pointer;
-        width: 100%;
+        width: 30%;
         opacity: 0.9;
     }
 
@@ -43,12 +47,13 @@
     /* Float cancel and signup buttons and add an equal width */
     .cancelbtn, .signupbtn {
         float: left;
-        width: 50%;
+        width: 40%;
     }
 
     /* Add padding to container elements */
     .container {
-        padding: 16px;
+        padding: 20px;
+        vertical-align: middle;
     }
 
     /* Clear floats */
@@ -61,7 +66,7 @@
     /* Change styles for cancel button and signup button on extra small screens */
     @media screen and (max-width: 300px) {
         .cancelbtn, .signupbtn {
-            width: 100%;
+            width: 40%;
         }
     }
 </style>
@@ -74,10 +79,13 @@
         <h1>Sign In</h1>
         <hr>
         <label><b>Username</b></label>
+        <br/>
         <input type="text" placeholder="Enter Username" name="username" required>
-
+        <br/>
         <label><b>Password</b></label>
+        <br/>
         <input type="password" placeholder="Enter Password" name="password" required>
+        <br/>
 
         <button type="submit" class="signupbtn">Login</button>
     </div>
