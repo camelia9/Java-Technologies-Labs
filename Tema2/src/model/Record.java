@@ -1,38 +1,38 @@
 package model;
 
 public class Record {
-    private String category, key, name;
+    private String username, email, password;
 
     public Record() {
     }
 
-    public Record(String category, String key, String name) {
-        this.category = category;
-        this.key = key;
-        this.name = name;
+    public Record(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
 
-    public String getCategory() {
+    public String getUsername() {
         return category;
     }
 
-    public String getKey() {
-        return key;
+    public String getEmail() {
+        return email;
     }
 
-    public String getName() {
-        return name;
+    public String getPassword() {
+        return password;
     }
 
-    public void setCategory(String category) {
+    public void setUsername(String category) {
         this.category = category;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
