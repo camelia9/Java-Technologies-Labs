@@ -1,38 +1,22 @@
 package model;
 
-public class Record {
-    private String username, email, password;
+public class Record extends Login {
+    private String email;
 
     public Record() {
     }
 
     public Record(String username, String email, String password) {
-        this.username = username;
+        super(username, password);
         this.email = email;
-        this.password = password;
-    }
 
-    public String getUsername() {
-        return category;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setUsername(String category) {
-        this.category = category;
-    }
-
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
