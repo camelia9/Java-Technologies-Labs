@@ -1,12 +1,11 @@
 <%@ page import="model.Login"%>
-<jsp:useBean id="login" scope="session"  type="model.Login"/>
-<jsp:setProperty name="login" property="*"/>
 <html>
 <head>
-    <title>Thankyou for your request</title>
+    <title>Welcome</title>
 </head>
 <body>
-<h1>Thankyou <%=login.getUsername()%> for log in</h1>
-<p>Your password is <%=login.getPassword()%></p>
+<jsp:useBean id="user" type="model.Record" scope="request"/>
+<h3>Welcome <%=user.getUsername()%></h3>
+<p>Your email is <%=user.getEmail()%></p>
 </body>
 </html>
