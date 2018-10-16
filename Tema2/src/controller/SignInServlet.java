@@ -2,6 +2,7 @@ package controller;
 
 import model.Login;
 import model.Record;
+import model.TokenMetadata;
 import repository.RecordRepository;
 
 import javax.servlet.ServletException;
@@ -15,20 +16,16 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
-import java.util.Calendar;
 import java.util.HashMap;
 
 @WebServlet(name = "SignInServlet")
 public class SignInServlet extends HttpServlet {
 
-    private final static String tokenName = "userToken";
-    private final static int age = 120;
+    private final static String TOKEN_NAME = "userToken";
+    private final static int COOKIE_AGE = 120;
     private RecordRepository usersEvidence;
-    private HashMap<String, Integer> onlineTokens;
+    private HashMap<String, TokenMetadata> onlineTokens;
 
-    private boolean isCookieExpired(Cookie c){
-        return c.getMaxAge() <= (int)(System.currentTimeMillis() / 1000);
-    }
 
     @Override
     public void init() throws ServletException {
@@ -70,11 +67,16 @@ public class SignInServlet extends HttpServlet {
         }else{
             String token = generateCookie(login);
             request.setAttribute("user", record);
-            Cookie c = new Cookie(tokenName, token);
-
-            c.setMaxAge(age);
+            Cookie c = new Cookie(TOKEN_NAME, token);
+            c.setMaxAge(COOKIE_AGE);
             response.addCookie(c);
-            onlineTokens.put(token, record.hashCode());
+            onlineTokens.put(
+                    token,
+                    new TokenMetadata(
+                            record.hashCode(),
+                            System.currentTimeMillis() + COOKIE_AGE * 1000
+                    )
+            );
             request.getRequestDispatcher("/welcome.jsp").forward(request, response);
         }
     }
@@ -83,17 +85,19 @@ public class SignInServlet extends HttpServlet {
         Cookie[] cookies = request.getCookies();
 
         for (Cookie c: cookies){
-            System.out.println("IS COOKIE EXPIRED " + isCookieExpired(c));
-            if ( c.getName().equals(tokenName) &&
+            if ( c.getName().equals(TOKEN_NAME) &&
                  onlineTokens.containsKey(c.getValue())){
-                if(!isCookieExpired(c)) {
-                    request.setAttribute("user", usersEvidence.getUser(onlineTokens.get(c.getValue())));
-                    request.getRequestDispatcher("/welcome.jsp").forward(request, response);
-                    return;
-                }
-                onlineTokens.remove(c.getValue());
+                if (onlineTokens.get(c.getValue()).getExpireDate() < System.currentTimeMillis())
+                    break;
+                request.setAttribute(
+                        "user",
+                        usersEvidence.getUser(onlineTokens.get(c.getValue()).getUserDatahashCode())
+                );
+                request.getRequestDispatcher("/welcome.jsp").forward(request, response);
+                return;
             }
         }
+        onlineTokens.values().removeIf(t -> t.getExpireDate() < System.currentTimeMillis());
         request.getRequestDispatcher("/signin.jsp").forward(request, response);
     }
 }
