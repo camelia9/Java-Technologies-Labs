@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.function.ToDoubleBiFunction;
 
 @WebServlet(name = "RecordServlet")
 public class RecordServlet extends HttpServlet {
@@ -37,13 +35,15 @@ public class RecordServlet extends HttpServlet {
                 request.getRequestDispatcher("/error.jsp").forward(request,response);
             }
             else{
-                records.addRecordToList(record);
-                StringBuilder stringBuilder = new StringBuilder();
+                records.addRecord(record);
+
+                /*StringBuilder stringBuilder = new StringBuilder();
                 for(Record r : records.getRecordList()){
                     stringBuilder.append("<tr> <td>" + r.getUsername() + " </td> <td> " + r.getEmail() +  "</td> </tr>" );
                 }
                 request.setAttribute("recordList", stringBuilder.toString());
-                request.getRequestDispatcher("/result.jsp").forward(request,response);
+                request.getRequestDispatcher("/result.jsp").forward(request,response);*/
+                response.sendRedirect("/signin");
             }
 
         }
