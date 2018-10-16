@@ -1,12 +1,20 @@
 package repository;
 
+import model.Login;
 import model.Record;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class RecordRepository {
     private List<Record> recordList = new ArrayList<>();
+    private static Map<Integer, Record> records;
+
+    static {
+        records = new ConcurrentHashMap<>();
+    }
 
     public RecordRepository(){}
 
@@ -19,15 +27,19 @@ public class RecordRepository {
     }
 
     public boolean canBeAdded(Record record){
-        if(recordList.contains(record)){
-            return false;
-        }
-        return true;
+        return !records.containsKey(record.hashCode());
     }
 
-    public void addRecordToList(Record record){
+    public void addRecord(Record record){
+        records.put(record.hashCode(), record);
+    }
 
-        recordList.add(record);
+    public Record getUser(Login login){
+        return records.getOrDefault(login.hashCode(), null);
+    }
+
+    public Record getUser(Integer loginHash){
+        return records.getOrDefault(loginHash, null);
     }
 
     public List<Record> getRecordList(){
