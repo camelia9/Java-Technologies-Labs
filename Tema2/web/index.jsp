@@ -34,7 +34,7 @@
       <br/>
     <input type="submit" name="submit" value="record">
   </form>
-  <p>Already have an account? Go <a href="http://localhost:8080/signin.jsp">here</a></p>
+  <p>Already have an account? Go <a href="/signin">here</a></p>
 
   </body>
 </html>
