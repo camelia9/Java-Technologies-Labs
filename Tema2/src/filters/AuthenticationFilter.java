@@ -38,4 +38,9 @@ public class AuthenticationFilter implements Filter {
         }
         filterChain.doFilter(servletRequest, servletResponse);
     }
+
+    @Override
+    public void destroy() {
+
+    }
 }

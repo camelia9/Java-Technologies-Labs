@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <style>
-    <style>
     body {font-family: Arial, Helvetica, sans-serif;
         align-items: center;
     }
