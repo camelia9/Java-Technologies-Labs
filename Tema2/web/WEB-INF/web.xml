@@ -33,4 +33,18 @@
         <url-pattern>/signin</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <filter-name>Authentication</filter-name>
+        <filter-class>filters.AuthenticationFilter</filter-class>
+        <init-param>
+            <param-name>excludedUrls</param-name>
+            <param-value>/signin, /, /captcha</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>Authentication</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
 </web-app>
