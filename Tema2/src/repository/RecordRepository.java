@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class RecordRepository {
-    private List<Record> recordList = new ArrayList<>();
-    private static Map<Integer, Record> records;
+    private  List<Record> recordList = new ArrayList<>();
+    public static Map<Integer, Record> records;
 
     static {
         records = new ConcurrentHashMap<>();

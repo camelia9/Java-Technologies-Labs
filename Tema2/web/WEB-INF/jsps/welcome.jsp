@@ -1,4 +1,5 @@
 <%@ page import="model.Login"%>
+<%@ taglib uri="/WEB-INF/tlds/recordTag" prefix="record" %>
 <html>
 <head>
     <style>
@@ -15,7 +16,6 @@
 <jsp:useBean id="user" type="model.Record" scope="request"/>
 <h1>Welcome</h1>
 <hr>
-<h3>Welcome <%=user.getUsername()%></h3>
-<h4>Your email is <%=user.getEmail()%></h4>
+<record:record username= "${user.getUsername()}"  password="${user.getPassword()}"/>
 </body>
 </html>
