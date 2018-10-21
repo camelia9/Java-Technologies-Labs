@@ -1,6 +1,9 @@
 package filters;
 
 import model.Record;
+import utils.Routes;
+import utils.SessionArgs;
+
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -29,10 +32,11 @@ public class AuthenticationFilter implements Filter {
 
         // check if url need user to be authenticated
         if (!this.excludedUrls.contains(httpReq.getRequestURI())){
-            Record record = (Record) httpReq.getSession().getAttribute("user");
+            Record record = (Record) httpReq.getSession().getAttribute(SessionArgs.USER);
+
             if (record == null) {
                 // user not authenticated; redirect to sign in page
-                httpRes.sendRedirect("/signin");
+                httpRes.sendRedirect(Routes.SIGN_IN_ROUTE);
                 return;
             }
         }
