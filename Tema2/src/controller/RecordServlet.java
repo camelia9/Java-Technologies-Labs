@@ -2,6 +2,8 @@ package controller;
 
 import model.Record;
 import repository.RecordRepository;
+import utils.JspRoutes;
+import utils.Routes;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,13 +28,13 @@ public class RecordServlet extends HttpServlet {
 
         if(!captcha.equals(typedCaptcha)) {
             request.setAttribute("error", "Captcha did not matched");
-            request.getRequestDispatcher("/error.jsp").forward(request,response);
+            request.getRequestDispatcher(JspRoutes.ERROR).forward(request,response);
         }
         else
         {
             if(!records.canBeAdded(record)){
                 request.setAttribute("error", "Record already exists");
-                request.getRequestDispatcher("/error.jsp").forward(request,response);
+                request.getRequestDispatcher(JspRoutes.ERROR).forward(request,response);
             }
             else{
                 records.addRecord(record);
@@ -43,14 +45,12 @@ public class RecordServlet extends HttpServlet {
                 }
                 request.setAttribute("recordList", stringBuilder.toString());
                 //request.getRequestDispatcher("/result.jsp").forward(request,response);
-                response.sendRedirect("/signin");
+                response.sendRedirect(Routes.SIGN_IN_ROUTE);
             }
-
         }
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher(JspRoutes.SIGN_UP).forward(request, response);
     }
 }
