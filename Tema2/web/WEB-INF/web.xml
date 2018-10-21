@@ -12,6 +12,10 @@
         <servlet-name>SignInServlet</servlet-name>
         <servlet-class>controller.SignInServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>controller.HomeServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>RecordServlet</servlet-name>
@@ -33,12 +37,17 @@
         <url-pattern>/signin</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>Authentication</filter-name>
         <filter-class>filters.AuthenticationFilter</filter-class>
         <init-param>
             <param-name>excludedUrls</param-name>
-            <param-value>/signin, /, /captcha</param-value>
+            <param-value>/signin, /captcha, /record</param-value>
         </init-param>
     </filter>
     <filter-mapping>
