@@ -19,4 +19,9 @@ public class Record extends Login {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.hashCode() == obj.hashCode();
+    }
 }
