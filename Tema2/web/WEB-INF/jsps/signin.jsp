@@ -89,5 +89,9 @@
         <button type="submit" class="signupbtn">Login</button>
     </div>
 </form>
+<br/>
+<div>
+    <p><a href="/record">Sign up</a></p>
+</div>
 </body>
 </html>
