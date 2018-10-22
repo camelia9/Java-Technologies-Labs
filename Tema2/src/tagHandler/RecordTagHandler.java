@@ -17,6 +17,7 @@ public class RecordTagHandler   extends SimpleTagSupport implements DynamicAttri
 
     private String username;
     private String password;
+    private String email;
 
 
     public void setPassword(String password) {
@@ -29,14 +30,21 @@ public class RecordTagHandler   extends SimpleTagSupport implements DynamicAttri
 
     @Override
     public void doTag() throws JspException, IOException {
+        JspWriter out = getJspContext().getOut();
         if (username != null && password != null) {
             Login credentials = new Login(username,password);
-            String email = RecordRepository.records.get(credentials.hashCode()).getEmail();
-            JspWriter out = getJspContext().getOut();
-            out.print("<strong> Wellcome " + username + " your email is " + email + "</strong>");
+
+            if(RecordRepository.getRecordFromMap(credentials.hashCode()) != null){
+                email = RecordRepository.records.get(credentials.hashCode()).getEmail();
+                out.print("<strong> Wellcome " + username + " your email is " + email + "</strong>");
+            }
+            else{
+                out.print("<strong> Wellcome " + username + "</strong>");
+            }
+
         } else {
          /* use message from the body */
-            JspWriter out = getJspContext().getOut();
+
             out.print("Error message");
         }
     }

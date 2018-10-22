@@ -16,6 +16,6 @@
 <jsp:useBean id="user" type="model.Record" scope="request"/>
 <h1>Welcome</h1>
 <hr>
-<record:record username= "${user.getUsername()}"  password="${user.getPassword()}"/>
+<record:record username= "1"  password="1"/>
 </body>
 </html>
