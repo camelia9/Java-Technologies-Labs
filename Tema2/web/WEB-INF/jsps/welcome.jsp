@@ -1,5 +1,7 @@
 <%@ page import="model.Login"%>
 <%@ taglib uri="/WEB-INF/tlds/recordTag" prefix="record" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="/WEB-INF/tlds/function_tag.tld" prefix="f"%>
 <html>
 <head>
     <style>
@@ -17,5 +19,22 @@
 <h1>Welcome</h1>
 <hr>
 <record:record username= "${user.getUsername()}"  password="${user.getPassword()}"/>
+<hr>
+<h2>Users List</h2>
+
+<table border="2px">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>
+    <c:forEach items="${f:allRecords()}" var="record">
+        <tr>
+            <td>${record.getUsername()}</td>
+            <td>${record.getEmail()}</td>
+        </tr>
+    </c:forEach>
+</table>
+
+</body>
 </body>
 </html>
