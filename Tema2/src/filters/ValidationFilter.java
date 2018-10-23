@@ -27,7 +27,7 @@ public class ValidationFilter implements Filter {
 
         if (req.getMethod().equalsIgnoreCase("POST")){
             String email = req.getParameter("email");
-            System.out.println(email != null && !email.isEmpty());
+
             if(email != null && !email.isEmpty()){
                 if (!emailValidator.matcher(email).matches()) {
                     res.sendRedirect(Routes.SIGN_UP_ROUTE);
