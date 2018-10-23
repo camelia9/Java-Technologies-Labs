@@ -23,7 +23,7 @@
 
     <servlet-mapping>
         <servlet-name>RecordServlet</servlet-name>
-        <url-pattern>/record</url-pattern>
+        <url-pattern>/signup</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -71,7 +71,7 @@
     </filter>
     <filter-mapping>
         <filter-name>Validation</filter-name>
-        <url-pattern>/record</url-pattern>
+        <url-pattern>/signup</url-pattern>
     </filter-mapping>
 
     <filter>
@@ -82,4 +82,5 @@
         <filter-name>Decorator</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
 </web-app>

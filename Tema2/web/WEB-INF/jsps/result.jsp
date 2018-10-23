@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="/WEB-INF/tlds/function_tag.tld" prefix="f"%>
 <html>
 <head>
     <style>
@@ -39,6 +41,9 @@
 </head>
 <body>
 <div id="_head">%s</div>
+=======
+<!---   <body>
+>>>>>>> b9a3678ccb5f1887c02d2a79fffcd2cc7ad785c0
 <h1>User List</h1>
 <hr>
 <table>
@@ -52,4 +57,25 @@
 <div id="_footer">%s</div>
 </body>
 </html>
+!--->
+
+<h2>Users List</h2>
+
+<table border="2px">
+    <tr>
+        <th>${language}</th>
+        <th>${word}</th>
+        <th>${definition}</th>
+    </tr>
+    <c:forEach items="${f:allRecords()}" var="record">
+        <tr>
+            <td>${record.getUsername()}</td>
+            <td>${record.getEmail()}</td>
+        </tr>
+    </c:forEach>
+</table>
+<div id="_footer">%s</div>
+</body>
+</html>
+
 

@@ -8,4 +8,5 @@ public class JspRoutes {
     public static final String WELCOME = BASE_ROUTE + "/welcome.jsp";
     public static final String ERROR = BASE_ROUTE + "/error.jsp";
     public static final String TO_BE_DECORATED = BASE_ROUTE + "/tobedecorated.jsp";
+    public static final String RESULT = BASE_ROUTE + "/result.jsp";
 }

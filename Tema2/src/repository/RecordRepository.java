@@ -26,6 +26,16 @@ public class RecordRepository {
         return records.get(key);
     }
 
+    public static  List<Record> getRecordsFromMap(){
+        List<Record> listOfRecords = new ArrayList<>();
+
+        for(Integer i : records.keySet()){
+            listOfRecords.add(records.get(i));
+        }
+
+        return listOfRecords;
+    }
+
     public void setRecordList(List<Record>records){
         recordList = records;
     }
