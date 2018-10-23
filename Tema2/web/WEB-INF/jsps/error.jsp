@@ -15,9 +15,12 @@
     </style>
     <title>Error</title>
 </head>
-<p>
+<body>
+<div id="_head">%s</div>
+
 <h4>The following error has occurred :${error}</h4>
 <br/>
 <p>Please return <a href="http://localhost:8080/">here</a></p>
+<div id="_footer">%s</div>
 </body>
 </html>

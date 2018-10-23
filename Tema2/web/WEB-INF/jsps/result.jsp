@@ -38,6 +38,7 @@
     <title>User List</title>
 </head>
 <body>
+<div id="_head">%s</div>
 <h1>User List</h1>
 <hr>
 <table>
@@ -48,7 +49,7 @@
     </tr>
     ${recordList}
 </table>
-
+<div id="_footer">%s</div>
 </body>
 </html>
 

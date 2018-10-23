@@ -81,6 +81,7 @@
     <title>Sign Up</title>
   </head>
   <body>
+  <div id="_head">%s</div>
   <form method="POST" action="/record">
       <div class="container">
           <h1>Sign Up</h1>
@@ -110,6 +111,6 @@
   </form>
   <br/>
   <p>Already have an account? Go <a href="/signin">here</a></p>
-
+  <div id="_footer">%s</div>
   </body>
 </html>
