@@ -22,6 +22,10 @@ public class RecordRepository {
         recordList = records;
     }
 
+    public static Record getRecordFromMap(Integer key){
+        return records.get(key);
+    }
+
     public void setRecordList(List<Record>records){
         recordList = records;
     }
