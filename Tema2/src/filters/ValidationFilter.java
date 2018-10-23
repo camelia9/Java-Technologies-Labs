@@ -27,6 +27,7 @@ public class ValidationFilter implements Filter {
 
         if (req.getMethod().equalsIgnoreCase("POST")){
             String email = req.getParameter("email");
+            System.out.println(email != null && !email.isEmpty());
             if(email != null && !email.isEmpty()){
                 if (!emailValidator.matcher(email).matches()) {
                     res.sendRedirect(Routes.SIGN_UP_ROUTE);
@@ -34,9 +35,12 @@ public class ValidationFilter implements Filter {
                 }
             }
             else{
-                HttpServletRequestWrapper requestWrapper = new HttpServletRequestWrapper(req);
-                requestWrapper.setAttribute("email", DEFAULT_EMAIL_VALUE);
-                servletRequest = requestWrapper;
+                servletRequest = new HttpServletRequestWrapper(req){
+                    @Override
+                    public String getParameter(String name) {
+                        return name.equals("email") ? DEFAULT_EMAIL_VALUE : super.getParameter(name);
+                    }
+                };
             }
         }
         filterChain.doFilter(servletRequest, servletResponse);
