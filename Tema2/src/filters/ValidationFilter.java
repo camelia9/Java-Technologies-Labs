@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class ValidationFilter implements Filter {
 
-    private static final String EMAIL_REGEX = "\"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$\"";
+    private static final String EMAIL_REGEX = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
     private static final String DEFAULT_EMAIL_VALUE = "not specified";
     private Pattern emailValidator;
 
