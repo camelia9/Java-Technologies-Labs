@@ -92,7 +92,7 @@
 </form>
 <br/>
 <div>
-    <p><a href="/record">Sign up</a></p>
+    <p><a href="/signup">Sign up</a></p>
 </div>
 <div id="_footer">%s</div>
 </body>

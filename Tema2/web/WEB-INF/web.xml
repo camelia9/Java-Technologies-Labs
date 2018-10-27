@@ -48,7 +48,7 @@
 
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
 
     <filter>
@@ -56,7 +56,7 @@
         <filter-class>filters.AuthenticationFilter</filter-class>
         <init-param>
             <param-name>excludedUrls</param-name>
-            <param-value>/signin, /captcha, /record</param-value>
+            <param-value>/signin, /captcha, /signup</param-value>
         </init-param>
     </filter>
     <filter-mapping>

@@ -82,7 +82,7 @@
   </head>
   <body>
   <div id="_head">%s</div>
-  <form method="POST" action="/record">
+  <form method="POST" action="/signup">
       <div class="container">
           <h1>Sign Up</h1>
           <hr>

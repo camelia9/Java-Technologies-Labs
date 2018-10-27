@@ -1,6 +1,6 @@
 <%@ page import="model.Login"%>
 <%@ taglib uri="/WEB-INF/tlds/recordTag" prefix="record" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="/WEB-INF/tlds/function_tag.tld" prefix="f"%>
 <html>
 <head>
@@ -35,6 +35,7 @@
         </tr>
     </c:forEach>
 </table>
+
 <div id="_footer">%s</div>
 </body>
 </html>
