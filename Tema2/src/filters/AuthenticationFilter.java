@@ -33,7 +33,7 @@ public class AuthenticationFilter implements Filter {
         // check if url need user to be authenticated
         if (!this.excludedUrls.contains(httpReq.getRequestURI())){
             Record record = (Record) httpReq.getSession().getAttribute(SessionArgs.USER);
-
+            System.out.println("RECORD = " + record );
             if (record == null) {
                 // user not authenticated; redirect to sign in page
                 httpRes.sendRedirect(Routes.SIGN_IN_ROUTE);

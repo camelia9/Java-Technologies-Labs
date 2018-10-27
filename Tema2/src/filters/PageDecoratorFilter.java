@@ -24,11 +24,11 @@ public class PageDecoratorFilter implements Filter {
             ServletResponse response,
             FilterChain filterChain) throws IOException, ServletException {
 
+        System.out.println("DECORATOR FILTER");
         CharResponseWrapper wrapper =
                 new CharResponseWrapper( (HttpServletResponse)response );
 
         filterChain.doFilter(request, wrapper);
-
         String content = wrapper.toString();
         content = content.replace(HEADER, String.format(HEADER, "<h2>Header</h2>"));
         content = content.replace(FOOTER, String.format(FOOTER, "<footer>&copy;2018</footer>"));

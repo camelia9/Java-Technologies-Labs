@@ -40,7 +40,6 @@ public class SignInServlet extends HttpServlet {
         Record loggedInUser = (Record)request.getSession().getAttribute(SessionArgs.USER);
 
         if(loggedInUser == null){
-            System.out.println("NO USER LOGGED IN");
             request.getSession().setAttribute(SessionArgs.USER, supposedUser);
         }
         else if (supposedUser.equals(loggedInUser)){
