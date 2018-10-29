@@ -7,27 +7,27 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <title>Lecturers table</title>
+    <title>Packages list</title>
 </h:head>
 
 <h:body>
-    <p:outputLabel value="Lecturers list"/>
+    <p:outputLabel value="Packages List"/>
     <br/><br/>
-    <p:dataTable var="lecturer" value="#{lecturersBean.allLecturers}">
+    <p:dataTable var="package" value="">
         <p:column headerText="Name">
-            <h:outputText value="#{lecturer.getName()}" />
+            <h:outputText value="name" />
         </p:column>
 
-        <p:column headerText="Surname">
-            <h:outputText value="surname" />
+        <p:column headerText="Year">
+            <h:outputText value="Year" />
         </p:column>
 
-        <p:column headerText="Email">
-            <h:outputText value="email" />
+        <p:column headerText="Semester">
+            <h:outputText value="Semester" />
         </p:column>
 
-        <p:column headerText="Course">
-            <h:outputText value="course" />
+        <p:column headerText="Number">
+            <h:outputText value="Number" />
         </p:column>
     </p:dataTable>
 </h:body>

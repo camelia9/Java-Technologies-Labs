@@ -7,29 +7,35 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <title>Define lecturer</title>
+    <title>Define Optional Package</title>
 </h:head>
 <h:body>
     <ui:define name="content">
-        <p:outputLabel value="Define lecturer"/>
+        <p:outputLabel value="Define optional package"/>
         <br/><br/>
         <h:form id="formE">
             <br/><br/>
-            <p:outputPanel id="defineLecturer">
+            <p:outputPanel id="Package name">
                 <p:outputLabel value="Name: "/>
                 <p:inputText value=" "/>
                 <br/>
                 <br/>
-                <p:outputLabel value="Email: "/>
-                <p:inputText value=""/>
+                <p:outputLabel value="Year of Study: "/>
+                <select>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
                 <br/>
                 <br/>
-                <p:outputLabel value="Subject: "/>
-                <p:inputText value=""/>
+                <p:outputLabel value="Semester: "/>
+                <select>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
                 <br/>
                 <br/>
             </p:outputPanel>
-            <p:commandButton value="Add"  />
+            <p:commandButton value="Add" />
         </h:form>
     </ui:define>
 

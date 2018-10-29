@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Define Course</title>
+</h:head>
+<h:body>
+    <ui:define name="content">
+        <p:outputLabel value="Define courses"/>
+        <br/><br/>
+        <h:form id="formE">
+            <br/><br/>
+            <p:outputPanel id="defineCourse">
+                <p:outputLabel value="Name: "/>
+                <p:inputText value=" "/>
+                <br/>
+                <br/>
+                <p:outputLabel value="Abreviation: "/>
+                <p:inputText value=" "/>
+                <br/>
+                <br/>
+                <p:outputLabel value="Lecturer: "/>
+                <p:inputText value=""/>
+                <br/>
+                <br/>
+                <p:outputLabel value="Year Of Study: "/>
+                <p:inputText value=""/>
+                <br/>
+                <br/>
+                <p:outputLabel value="Semester: "/>
+                <p:inputText value=""/>
+                <br/>
+                <br/>
+                <p:outputLabel value="Semester: "/>
+                <p:inputText value=""/>
+                <br/>
+                <br/>
+                <p:outputLabel value="Number of credits: "/>
+                <p:inputText value=" "/>
+                <br/>
+                <br/>
+                <p:outputLabel value="Course page URL: "/>
+                <p:inputText value=" "/>
+                <br/>
+                <br/>
+            </p:outputPanel>
+            <p:commandButton value="Add" />
+        </h:form>
+    </ui:define>
+
+</h:body>
+</html>

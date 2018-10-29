@@ -10,8 +10,8 @@ import java.util.List;
 @ManagedBean(name = "lecturersBean")
 @SessionScoped
 public class LecturersBean {
-    List<Lecturer> allLecturers;
-    LecturersDAO lecturersDAO;
+    public List<Lecturer> allLecturers;
+    public LecturersDAO lecturersDAO;
 
     public LecturersBean(){
         lecturersDAO = new LecturersDAO();
@@ -19,11 +19,11 @@ public class LecturersBean {
     }
 
     public List<Lecturer> getAllLecturers() {
-        return allLecturers;
+        return lecturersDAO.getAllLecturers();
     }
 
-    public void setAllLecturers(List<Lecturer> allLecturers) {
-        this.allLecturers = allLecturers;
+    public void insertLecturer(Lecturer lecturer) {
+        lecturersDAO.insertLecturer(lecturer);
     }
 
 
