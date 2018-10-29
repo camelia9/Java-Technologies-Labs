@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Menu Bar</title>
+</h:head>
+<h:body>
+    <ui:composition>
+        <h:form>
+        <p:menubar rendered="#{not hideMenu}">
+            <p:submenu label="Students" icon="fa fa-child" rendered="#{not hideStudents}">
+                <p:menuitem value="View" url="/allStudents.xhtml" />
+                <p:separator />
+                <p:menuitem value="Add" url="/addStudent.xhtml"/>
+            </p:submenu>
+
+            <p:submenu label="Projects" icon="ui-icon-document" rendered="#{not hideProjects}">
+                <p:menuitem value="View" url="/allProjects.xhtml" />
+                <p:separator/>
+                <p:menuitem value="Add" url="/addProject.xhtml"/>
+            </p:submenu>
+
+            <p:submenu label="Teachers" icon="ui-icon-document" rendered="#{not hideTeachers}">
+                <p:menuitem value="View" url="#" />
+                <p:separator />
+                <p:menuitem value="Add" url="#"/>
+            </p:submenu>
+
+            <p:submenu label="Skills" icon="ui-icon-document" rendered="#{not hideSkills}">
+                <p:menuitem value="View" url="#" />
+                <p:separator />
+                <p:menuitem value="Add" url="#"/>
+            </p:submenu>
+
+            <p:submenu label="Project preferences" icon="ui-icon-document" rendered="#{not hidePrefs}">
+                <p:menuitem value="View" url="#" />
+                <p:separator />
+                <p:menuitem value="Add" url="#"/>
+            </p:submenu>
+
+            <p:menuitem value="LogOut" style="margin-left: 30px" action="#{loginBean.doLogOut()}" icon="ui-icon-extlink"/>
+        </p:menubar>
+        </h:form>
+    </ui:composition>
+</h:body>
+</html>
