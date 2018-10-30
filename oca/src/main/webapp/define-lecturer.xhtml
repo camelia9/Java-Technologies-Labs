@@ -17,10 +17,10 @@
                 <br/><br/>
                 <p:outputPanel id="defineLecturer">
                     <p:outputLabel value="Name: "/>
-                    <p:inputText value=" "/>
+                    <p:inputText value="#{lecturersBean.name}" required="true"/>
                     <br/>
                     <br/>
-                    <p:outputLabel value="Email: "/>
+                    <p:outputLabel value="#{lecturersBean.email}"/>
                     <p:inputText value=""/>
                     <br/>
                     <br/>
@@ -29,7 +29,7 @@
                     <br/>
                     <br/>
                 </p:outputPanel>
-                <p:commandButton value="Add" />
+                <p:commandButton value="Add" action="#{lecturersBean.submitLecturer}" />
             </h:form>
         </ui:define>
 

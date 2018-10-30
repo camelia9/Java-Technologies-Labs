@@ -7,31 +7,23 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <title>Define lecturer</title>
+    <title>Lecturers table</title>
 </h:head>
-<h:body>
-    <ui:define name="content">
-        <p:outputLabel value="Define lecturer"/>
-        <br/><br/>
-        <h:form id="formE">
-            <br/><br/>
-            <p:outputPanel id="defineLecturer">
-                <p:outputLabel value="Name: "/>
-                <p:inputText value=" "/>
-                <br/>
-                <br/>
-                <p:outputLabel value="Email: "/>
-                <p:inputText value=""/>
-                <br/>
-                <br/>
-                <p:outputLabel value="Subject: "/>
-                <p:inputText value=""/>
-                <br/>
-                <br/>
-            </p:outputPanel>
-            <p:commandButton value="Add"  />
-        </h:form>
-    </ui:define>
 
+<h:body>
+    <p:outputLabel value="Lecturers list"/>
+    <br/><br/>
+    <p:dataTable var="lecturer" value="#{lecturersBean.allLecturers}">
+        <p:column headerText="Name">
+            <h:outputText value="#{lecturer.name}" />
+        </p:column>
+        <p:column headerText="Email">
+            <h:outputText value="#{lecturer.email}" />
+        </p:column>
+
+        <p:column headerText="Course">
+            <h:outputText value="course" />
+        </p:column>
+    </p:dataTable>
 </h:body>
 </html>

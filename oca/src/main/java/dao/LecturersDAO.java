@@ -25,6 +25,10 @@ public class LecturersDAO {
         connection = Database.getConnection();
     }
 
+    public LecturersDAO(Connection connection){
+        connection = connection;
+    }
+
     public boolean insertLecturer(Lecturer lecturer){
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(INSERT_QUERY);
