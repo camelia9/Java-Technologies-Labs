@@ -14,8 +14,7 @@ public class Lecturer {
         courses = new ArrayList<Course>();
     }
 
-    public Lecturer(int id, String name, String email){
-        this.setId(id);
+    public Lecturer( String name, String email){
         this.setName(name);
         this.setEmail(email);
     }

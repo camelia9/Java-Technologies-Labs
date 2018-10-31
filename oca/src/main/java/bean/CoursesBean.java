@@ -101,8 +101,8 @@ public class CoursesBean implements Serializable {
         this.coursePageURL = coursePageURL;
     }
 
-    public Package getBelongedPackage() {
-        return belongedPackage;
+    public String getBelongedPackage() {
+        return belongedPackage.getName();
     }
 
     public void setBelongedPackage(Package belongedPackage) {
