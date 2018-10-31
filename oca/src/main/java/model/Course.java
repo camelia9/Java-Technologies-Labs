@@ -1,7 +1,7 @@
 package model;
 
 public class Course {
-    private String id;
+    private int id;
     private String abreviation;
     private String name;
     private Lecturer lecturer;
@@ -9,11 +9,13 @@ public class Course {
     private Integer semester;
     private Integer numberOfCredits;
     private String coursePageURL;
+    private Package belongedPackage;
+
 
     public Course() {
     }
 
-    public Course(String id, String abreviation, String name, Lecturer lecturer, Integer yearOfStudy,
+    public Course(int id, String abreviation, String name, Lecturer lecturer, Integer yearOfStudy,
                   Integer semester, Integer numberOfCredits, String coursePageURL) {
         this.id = id;
         this.abreviation = abreviation;
@@ -25,11 +27,11 @@ public class Course {
         this.coursePageURL = coursePageURL;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -88,4 +90,13 @@ public class Course {
     public void setCoursePageURL(String coursePageURL) {
         this.coursePageURL = coursePageURL;
     }
+
+    public Package getBelongedPackage() {
+        return belongedPackage;
+    }
+
+    public void setBelongedPackage(Package belongedPackage) {
+        this.belongedPackage = belongedPackage;
+    }
+
 }
