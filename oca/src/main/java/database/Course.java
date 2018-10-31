@@ -11,4 +11,5 @@ public class Course {
     public static final String CREDITS_NUMBER = "credits_number";
     public static final String COURSE_URL = "course_url";
     public static final String LECTURER = "lecturer";
+    public static final String PACKAGE = "package";
 }
