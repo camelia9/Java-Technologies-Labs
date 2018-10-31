@@ -16,7 +16,7 @@ public class LecturersDAO {
             database.Lecturer.NAME,
             database.Lecturer.EMAIL
     );
-    private static final String GET_ALL_LECTURERS_QUERY = String.format(
+    public static final String GET_ALL_LECTURERS_QUERY = String.format(
             "SELECT * FROM %s", database.Lecturer.TABLE_NAME
     );
 

@@ -11,17 +11,17 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Random;
 
-@ManagedBean(name = "lecturersBean")
+@ManagedBean(name = "lecturersBean", eager = true)
 @SessionScoped
 public class LecturersBean implements Serializable {
     private static final long serialVersionUID = 1L;
     public List<Lecturer> allLecturers;
-    public LecturersDAO lecturersDAO;
+    public LecturersDAO lecturersDAO = new LecturersDAO();
     private String name;
     private String email;
+    private Connection connection;
 
     public LecturersBean(){
-        lecturersDAO = new LecturersDAO();
         allLecturers = lecturersDAO.getAllLecturers();
     }
 
@@ -29,8 +29,9 @@ public class LecturersBean implements Serializable {
         return lecturersDAO.getAllLecturers();
     }
 
-    public void submitLecturer(){
+    public String submitLecturer(){
         lecturersDAO.insertLecturer(new Lecturer(5,this.name,this.email));
+        return "allLecturers";
     }
 
     public void insertLecturer(Lecturer lecturer) {

@@ -1,6 +1,7 @@
 package controller;
 
 import config.WebRoutes;
+import dao.CoursesDAO;
 import dao.LecturersDAO;
 import database.Database;
 
@@ -22,8 +23,8 @@ public class HomeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        LecturersDAO lecturersDAO= new LecturersDAO();
-        response.getWriter().write(lecturersDAO.getAllLecturers().toString());
+        CoursesDAO lecturersDAO= new CoursesDAO();
+        response.getWriter().write(lecturersDAO.getAllCourses().toString());
         //RequestDispatcher rd = request.getRequestDispatcher("allLecturers.xhtml");
         //rd.forward(request, response);
     }

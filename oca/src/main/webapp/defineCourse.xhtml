@@ -11,45 +11,41 @@
 </h:head>
 <h:body>
     <ui:define name="content">
-        <p:outputLabel value="Define courses"/>
-        <br/><br/>
+        <p:outputLabel value="Define a course"/>
         <h:form id="formE">
             <br/><br/>
             <p:outputPanel id="defineCourse">
                 <p:outputLabel value="Name: "/>
-                <p:inputText value=" "/>
+                <br/>
+                <p:inputText value="#{coursesBean.name} "/>
                 <br/>
                 <br/>
-                <p:outputLabel value="Abreviation: "/>
-                <p:inputText value=" "/>
+                <p:outputLabel value="Abreviation: "/><br/>
+                <p:inputText value="#{coursesBean.abreviation} "/>
                 <br/>
                 <br/>
-                <p:outputLabel value="Lecturer: "/>
-                <p:inputText value=""/>
+                <p:outputLabel value="Lecturer: "/><br/>
+                <p:inputText value="#{coursesBean.lecturer}"/>
                 <br/>
                 <br/>
-                <p:outputLabel value="Year Of Study: "/>
-                <p:inputText value=""/>
+                <p:outputLabel value="Year Of Study: "/><br/>
+                <p:inputText value="#{coursesBean.yearOfStudy}"/>
                 <br/>
                 <br/>
-                <p:outputLabel value="Semester: "/>
-                <p:inputText value=""/>
+                <p:outputLabel value="Semester: "/><br/>
+                <p:inputText value="#{coursesBean.semester}"/>
                 <br/>
                 <br/>
-                <p:outputLabel value="Semester: "/>
-                <p:inputText value=""/>
+                <p:outputLabel value="Number of credits: "/><br/>
+                <p:inputText value="#{coursesBean.numberOfCredits} "/>
                 <br/>
                 <br/>
-                <p:outputLabel value="Number of credits: "/>
-                <p:inputText value=" "/>
-                <br/>
-                <br/>
-                <p:outputLabel value="Course page URL: "/>
+                <p:outputLabel value="Course page URL: "/><br/>
                 <p:inputText value=" "/>
                 <br/>
                 <br/>
             </p:outputPanel>
-            <p:commandButton value="Add" />
+            <p:commandButton value="Add"  action = "#{coursesBean.submitCourse}"/>
         </h:form>
     </ui:define>
 
