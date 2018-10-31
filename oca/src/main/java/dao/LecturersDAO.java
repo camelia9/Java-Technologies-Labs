@@ -29,16 +29,22 @@ public class LecturersDAO {
         connection = connection;
     }
 
-    public boolean insertLecturer(Lecturer lecturer){
+    public Lecturer insertLecturer(Lecturer lecturer){
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(INSERT_QUERY);
             preparedStatement.setString(1, lecturer.getName());
             preparedStatement.setString(2, lecturer.getEmail());
-            return 1 == preparedStatement.executeUpdate();
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()){
+                if (generatedKeys.next()) {
+                    lecturer.setId(generatedKeys.getInt(1));
+                    return lecturer;
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 
     public List<Lecturer> getAllLecturers(){
@@ -46,13 +52,9 @@ public class LecturersDAO {
         try {
             Statement stmt = this.connection.createStatement();
             ResultSet rs = stmt.executeQuery(GET_ALL_LECTURERS_QUERY);
-            while (rs.next()){
-                lecturers.add(new Lecturer(
-                        rs.getInt(database.Lecturer.ID),
-                        rs.getString(database.Lecturer.NAME),
-                        rs.getString(database.Lecturer.EMAIL)
-                ));
-            }
+            while (rs.next())
+                lecturers.add(new LecturerBuilder().fromResultSet(rs, "").build());
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -68,13 +70,9 @@ public class LecturersDAO {
                     database.Lecturer.ID, id
                     )
             );
-            if (rs.next()){
-                return new Lecturer(
-                        rs.getInt(database.Lecturer.ID),
-                        rs.getString(database.Lecturer.NAME),
-                        rs.getString(database.Lecturer.EMAIL)
-                );
-            }
+            if (rs.next())
+                return new LecturerBuilder().fromResultSet(rs, "").build();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
