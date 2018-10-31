@@ -12,7 +12,7 @@
 </a>
 <br/>
 <br/>
-<a href="defineOptionalPackage.xhtml.xhtml">
+<a href="defineOptionalPackage.xhtml">
     <button>Add package</button>
 </a>
 </body>

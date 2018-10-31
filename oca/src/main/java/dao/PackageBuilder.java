@@ -1,16 +1,16 @@
 package dao;
 
-import model.Package;
+import model.OptionalPackage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PackageBuilder {
 
-    private Package aPackage;
+    private OptionalPackage aPackage;
 
     public PackageBuilder(){
-        this.aPackage = new Package();
+        this.aPackage = new OptionalPackage();
     }
 
     public PackageBuilder fromResultSet(ResultSet rs) throws SQLException {
@@ -41,8 +41,8 @@ public class PackageBuilder {
         return this;
     }
 
-    public Package build(){
-        Package ret = this.aPackage;
+    public OptionalPackage build(){
+        OptionalPackage ret = this.aPackage;
         this.aPackage = null;
         return ret;
     }

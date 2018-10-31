@@ -1,8 +1,7 @@
 package dao;
 
 import database.Database;
-import model.Lecturer;
-import model.Package;
+import model.OptionalPackage;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -16,7 +15,7 @@ public class PackagesDAO {
         this.connection = Database.getConnection();
     }
 
-    public boolean insertPackage(Package aPackage){
+    public boolean insertPackage(OptionalPackage aPackage){
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(
                     String.format("INSERT INTO %s(%s %s, %s) VALUES(?, ?, ?)",
@@ -34,8 +33,8 @@ public class PackagesDAO {
         return false;
     }
 
-    public List<Package> getPackages(){
-        List<Package> packages = new LinkedList<>();
+    public List<OptionalPackage> getPackages(){
+        List<OptionalPackage> packages = new LinkedList<>();
         try {
             Statement stmt = this.connection.createStatement();
             ResultSet rs = stmt.executeQuery(String.format("SELECT * FROM %s", database.Package.TABLE_NAME));

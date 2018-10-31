@@ -4,7 +4,7 @@ package dao;
 import database.Database;
 import model.Course;
 import model.Lecturer;
-import model.Package;
+import model.OptionalPackage;
 
 import java.sql.*;
 import java.util.LinkedList;
@@ -81,7 +81,7 @@ public class CoursesDAO {
         return results;
     }
 
-    public List<Course> getPackageCourses(Package p){
+    public List<Course> getPackageCourses(OptionalPackage p){
         Statement stmt = null;
         List<Course> results = new LinkedList<>();
         try {

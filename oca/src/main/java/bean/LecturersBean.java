@@ -19,7 +19,6 @@ public class LecturersBean implements Serializable {
     public LecturersDAO lecturersDAO = new LecturersDAO();
     private String name;
     private String email;
-    private Connection connection;
 
     public LecturersBean(){
         allLecturers = lecturersDAO.getAllLecturers();
