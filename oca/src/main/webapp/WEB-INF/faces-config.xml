@@ -4,10 +4,17 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <navigation-rule>
-        <from-view-id>define-lecturer.xhtml</from-view-id>
+        <from-view-id>defineLecturer.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>succes</from-outcome>
             <to-view-id>allLecturers.xhtml?faces-redirect=true</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>defineCourse.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>succes</from-outcome>
+            <to-view-id>allCourses.xhtml?faces-redirect=true</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

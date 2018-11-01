@@ -12,9 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.sql.Connection;
 import java.util.List;
-import java.util.Random;
 
 @ManagedBean(name = "lecturersBean", eager = true)
 @SessionScoped

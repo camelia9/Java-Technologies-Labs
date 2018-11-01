@@ -23,8 +23,9 @@ public class PackagesBean implements Serializable {
         allPackages = packagesDAO.getPackages();
     }
 
-    public String submitPackage(){
+    public String add(){
         packagesDAO.insertPackage(new OptionalPackage(name,year,semester));
+        allPackages = packagesDAO.getPackages();
         return "allPackages";
     }
 
