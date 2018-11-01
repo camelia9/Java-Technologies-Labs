@@ -5,7 +5,12 @@ import database.Database;
 import model.Lecturer;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.util.List;
@@ -17,8 +22,15 @@ public class LecturersBean implements Serializable {
     private static final long serialVersionUID = 1L;
     public List<Lecturer> allLecturers;
     public LecturersDAO lecturersDAO = new LecturersDAO();
+
+    @NotNull(message = "Name cannot be null")
+    @Size(min = 3, message = "Name too small")
     private String name;
+
+    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$", message = "This is not a valid email")
+    @Size(max = 100)
     private String email;
+
     private Connection connection;
 
     public LecturersBean(){
