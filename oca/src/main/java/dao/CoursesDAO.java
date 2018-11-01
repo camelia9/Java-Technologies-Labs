@@ -61,7 +61,6 @@ public class CoursesDAO {
             ResultSet rs = stmt.executeQuery(GET_ALL_COURSES);
             while(rs.next())
                 results.add(new CourseBuilder().fromResultSet(rs).build());
-            System.out.println(results.size());
         } catch (SQLException e) {
             e.printStackTrace();
         }
