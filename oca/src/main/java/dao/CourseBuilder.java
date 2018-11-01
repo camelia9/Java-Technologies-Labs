@@ -21,7 +21,7 @@ public class CourseBuilder {
         this.course.setId(rs.getInt(cprefix + database.Course.ID));
         this.course.setName(rs.getString(cprefix + database.Course.NAME));
         this.course.setYearOfStudy(rs.getInt(cprefix + database.Course.STUDY_YEAR));
-        this.course.setSemester(rs.getInt(cprefix  +database.Course.SEMESTER));
+        this.course.setSemester(rs.getInt(cprefix + database.Course.SEMESTER));
         this.course.setNumberOfCredits(rs.getInt(cprefix + database.Course.CREDITS_NUMBER));
         this.course.setCoursePageURL(rs.getString(cprefix + database.Course.COURSE_URL));
 

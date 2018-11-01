@@ -79,7 +79,7 @@ public class CoursesDAO {
             while(rs.next())
                 results.add(
                         new CourseBuilder().setLecturer(l)
-                                .fromResultSet(rs, "c", "l", "p")
+                                .fromResultSet(rs, "c.", "l.", "p.")
                                 .build());
         } catch (SQLException e) {
             e.printStackTrace();
@@ -99,7 +99,7 @@ public class CoursesDAO {
             while(rs.next())
                 results.add(
                         new CourseBuilder().setPackage(p)
-                                .fromResultSet(rs, "c", "l", "p")
+                                .fromResultSet(rs, "c.", "l.", "p.")
                                 .build());
         } catch (SQLException e) {
             e.printStackTrace();
