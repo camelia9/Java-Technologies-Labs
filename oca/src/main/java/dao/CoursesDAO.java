@@ -60,7 +60,7 @@ public class CoursesDAO {
             stmt = this.connection.createStatement();
             ResultSet rs = stmt.executeQuery(GET_ALL_COURSES);
             while(rs.next())
-                results.add(new CourseBuilder().fromResultSet(rs, "c", "l", "p").build());
+                results.add(new CourseBuilder().fromResultSet(rs, "c ", "l ", "p ").build());
         } catch (SQLException e) {
             e.printStackTrace();
         }
