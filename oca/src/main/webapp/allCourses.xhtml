@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+<html xmlns = "http://www.w3.org/1999/xhtml"
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Courses List</title>
@@ -13,28 +13,37 @@
 <h:body>
     <p:outputLabel value="Courses list"/>
     <br/><br/>
-    <p:dataTable var="course" value="#{coursesBean.allCourses}">
-        <p:column headerText="Name">
-            <h:outputText value="#{coursesBean.name}" />
-        </p:column>
+    <h:dataTable value = "#{coursesBean.allCourses}" var = "course">
 
-        <p:column headerText="Abbreviation">
-            <h:outputText value="#{coursesBean.abreviation}" />
-        </p:column>
-        <p:column headerText="Lecturer">
-            <h:outputText value="#{coursesBean.lecturer}" />
-        </p:column>
-
-        <p:column headerText="Year of study">
-            <h:outputText value="#{coursesBean.yearOfStudy}" />
-        </p:column>
-        <p:column headerText="Semester of study">
-            <h:outputText value="#{coursesBean.semester}" />
-        </p:column>
-        <p:column headerText="Package">
-            <h:outputText value="#{coursesBean.belongedPackage}" />
-        </p:column>
-
-    </p:dataTable>
+    <h:column>
+        <f:facet name = "header">Name</f:facet>
+        #{course.name}
+    </h:column>
+        <h:column>
+            <f:facet name = "header">Abbreviation</f:facet>
+            #{course.abreviation}
+        </h:column>
+        <h:column>
+            <f:facet name = "header">Lecturer</f:facet>
+            #{course.lecturer}
+        </h:column>
+        <h:column>
+            <f:facet name = "header">Year of study</f:facet>
+            #{course.yearOfStudy}
+        </h:column>
+        <h:column>
+            <f:facet name = "header">Semester</f:facet>
+            #{course.semester}
+        </h:column>
+        <h:column>
+            <f:facet name = "header">Package</f:facet>
+            #{course.belongedPackage}
+        </h:column>
+        <h:column>
+            <f:facet name = "header">Number of credits</f:facet>
+            #{course.numberOfCredits}
+        </h:column>
+    </h:dataTable>
 </h:body>
+
 </html>

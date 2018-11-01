@@ -2,7 +2,7 @@
 <body>
 <h2>Wellcome to optional course allocation!</h2>
 <br/>
-<a href="define-lecturer.defineLecturer.xhtml">
+<a href="defineLecturer.xhtml">
     <button>Add lecturer</button>
 </a>
 <br/>

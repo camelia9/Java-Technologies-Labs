@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+<html xmlns = "http://www.w3.org/1999/xhtml"
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Lecturers table</title>
@@ -12,15 +12,19 @@
 
 <h:body>
     <p:outputLabel value="Lecturers list"/>
-    <br/><br/>
-    <p:dataTable var="lecturer" value="#{lecturersBean.allLecturers}">
-        <p:column headerText="Name">
-            <h:outputText value="#{lecturer.name}" />
-        </p:column>
-        <p:column headerText="Email">
-            <h:outputText value="#{lecturer.email}" />
-        </p:column>
+    <h:dataTable value = "#{lecturersBean.allLecturers}" var = "lecturer">
 
-    </p:dataTable>
+        <h:column>
+            <f:facet name = "header">Name</f:facet>
+            #{lecturer.name}
+        </h:column>
+        <h:column>
+            <f:facet name = "header">Email</f:facet>
+            #{lecturer.email}
+        </h:column>
+
+    </h:dataTable>
+
+
 </h:body>
 </html>

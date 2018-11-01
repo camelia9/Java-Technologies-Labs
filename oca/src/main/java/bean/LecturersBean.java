@@ -30,7 +30,8 @@ public class LecturersBean implements Serializable {
     }
 
     public String submitLecturer(){
-        lecturersDAO.insertLecturer(new Lecturer(5,this.name,this.email));
+        lecturersDAO.insertLecturer(new Lecturer(name,email));
+        allLecturers = lecturersDAO.getAllLecturers();
         return "allLecturers";
     }
 
