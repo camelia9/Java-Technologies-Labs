@@ -1,32 +1,30 @@
 package bean;
 
 import dao.LecturersDAO;
-import database.Database;
 import model.Lecturer;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
+
 import java.io.Serializable;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @ManagedBean(name = "lecturersBean", eager = true)
-@SessionScoped
+@RequestScoped
 public class LecturersBean implements Serializable {
+
+    private static final Pattern emailRegex =
+            Pattern.compile("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$");
+
     private static final long serialVersionUID = 1L;
     public List<Lecturer> allLecturers;
     public LecturersDAO lecturersDAO = new LecturersDAO();
-
-    @NotNull(message = "Name cannot be null")
-    @Size(min = 3, message = "Name too small")
     private String name;
-
-    @Pattern(regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$", message = "This is not a valid email")
-    @Size(max = 100)
     private String email;
 
     public LecturersBean(){
@@ -63,6 +61,15 @@ public class LecturersBean implements Serializable {
         return email;
     }
 
+    public void validateEmail(FacesContext context,
+                              UIComponent component, Object value) {
+        String email = (String) value;
+        if(!emailRegex.matcher(email).matches()){
+            ((UIInput)component).setValid(false);
+            context.addMessage(component.getClientId(context),
+                    new FacesMessage("Must insert a valid email"));
 
+        }
+    }
 
 }
