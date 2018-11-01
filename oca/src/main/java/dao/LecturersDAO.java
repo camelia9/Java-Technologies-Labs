@@ -29,22 +29,17 @@ public class LecturersDAO {
         connection = connection;
     }
 
-    public Lecturer insertLecturer(Lecturer lecturer){
+    public boolean insertLecturer(Lecturer lecturer){
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(INSERT_QUERY);
             preparedStatement.setString(1, lecturer.getName());
             preparedStatement.setString(2, lecturer.getEmail());
+            return 1 == preparedStatement.executeUpdate();
 
-            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()){
-                if (generatedKeys.next()) {
-                    lecturer.setId(generatedKeys.getInt(1));
-                    return lecturer;
-                }
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return false;
     }
 
     public List<Lecturer> getAllLecturers(){

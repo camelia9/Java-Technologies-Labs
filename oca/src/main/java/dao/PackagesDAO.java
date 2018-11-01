@@ -16,7 +16,7 @@ public class PackagesDAO {
         this.connection = Database.getConnection();
     }
 
-    public Package insertPackage(Package aPackage){
+    public boolean insertPackage(Package aPackage){
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(
                     String.format("INSERT INTO %s(%s %s, %s) VALUES(?, ?, ?)",
@@ -26,17 +26,12 @@ public class PackagesDAO {
             preparedStatement.setString(1, aPackage.getName());
             preparedStatement.setInt(2, aPackage.getYear());
             preparedStatement.setInt(3, aPackage.getSemester());
-            preparedStatement.executeUpdate();
+            return 1 == preparedStatement.executeUpdate();
 
-            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()){
-                if (generatedKeys.next()) aPackage.setId(generatedKeys.getInt(1));
-                else aPackage = null;
-                return aPackage;
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return false;
     }
 
     public List<Package> getPackages(){

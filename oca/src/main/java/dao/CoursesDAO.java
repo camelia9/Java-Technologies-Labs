@@ -30,7 +30,7 @@ public class CoursesDAO {
         this.connection = Database.getConnection();
     }
 
-    public Course insertCourse(Course course){
+    public boolean insertCourse(Course course){
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(INSERT_QUERY);
             preparedStatement.setString(1, course.getAbreviation());
@@ -40,17 +40,11 @@ public class CoursesDAO {
             preparedStatement.setInt(5, course.getNumberOfCredits());
             preparedStatement.setString(6, course.getCoursePageURL());
             preparedStatement.setInt(7, course.getLecturer().getId());
-
-            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()){
-                if (generatedKeys.next()){
-                    course.setId(generatedKeys.getInt(1));
-                    return course;
-                }
-            }
+            return 1 == preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return false;
     }
 
     public List<Course> getAllCourses(){
