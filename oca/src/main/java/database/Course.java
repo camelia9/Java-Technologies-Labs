@@ -3,7 +3,7 @@ package database;
 public class Course {
 
     public static final String TABLE_NAME = "courses";
-    public static final String ID = "id";
+    public static final String ID = "course_id";
     public static final String ABBREVIATION = "abbreviation";
     public static final String NAME = "name";
     public static final String STUDY_YEAR = "study_year";
