@@ -2,7 +2,7 @@ package dao;
 
 import model.Course;
 import model.Lecturer;
-import model.Package;
+import model.OptionalPackage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -73,7 +73,7 @@ public class CourseBuilder {
         return this;
     }
 
-    public CourseBuilder setPackage(Package p){
+    public CourseBuilder setPackage(OptionalPackage p){
         this.course.setBelongedPackage(p);
         return this;
     }

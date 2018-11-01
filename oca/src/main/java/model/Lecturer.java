@@ -43,11 +43,11 @@ public class Lecturer {
         return email;
     }
 
-    public void setProposedProjects(List<Course> courses) {
+    public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
 
-    public List<Course> getProposedProjects() {
+    public List<Course> getCourses() {
         return courses;
     }
 

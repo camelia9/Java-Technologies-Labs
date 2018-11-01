@@ -3,7 +3,7 @@ package bean;
 import dao.CoursesDAO;
 import model.Course;
 import model.Lecturer;
-import model.Package;
+import model.OptionalPackage;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -25,7 +25,7 @@ public class CoursesBean implements Serializable {
     private Integer semester;
     private Integer numberOfCredits;
     private String coursePageURL;
-    private Package belongedPackage;
+    private OptionalPackage belongedPackage;
 
     public CoursesBean() {
         coursesDAO = new CoursesDAO();
@@ -41,7 +41,8 @@ public class CoursesBean implements Serializable {
     }
 
     public String submitCourse(){
-        coursesDAO.insertCourse(new Course());
+        coursesDAO.insertCourse(new Course(abreviation, name, lecturer, yearOfStudy,
+                semester, numberOfCredits, coursePageURL));
         return "allCourses";
     }
 
@@ -101,11 +102,11 @@ public class CoursesBean implements Serializable {
         this.coursePageURL = coursePageURL;
     }
 
-    public String getBelongedPackage() {
-        return belongedPackage.getName();
+    public OptionalPackage getBelongedPackage() {
+        return belongedPackage;
     }
 
-    public void setBelongedPackage(Package belongedPackage) {
+    public void setBelongedPackage(OptionalPackage belongedPackage) {
         this.belongedPackage = belongedPackage;
     }
 }

@@ -1,11 +1,20 @@
 package model;
 
-public class Package {
+public class OptionalPackage {
 
     private int id;
     private String name;
     private int year;
     private int semester;
+
+    public OptionalPackage() {
+    }
+
+    public OptionalPackage(String name, int year, int semester) {
+        this.name = name;
+        this.year = year;
+        this.semester = semester;
+    }
 
     public int getId() {
         return id;
@@ -37,5 +46,11 @@ public class Package {
 
     public void setSemester(int semester) {
         this.semester = semester;
+    }
+
+    @Override
+    public String toString(){
+
+        return this.getName();
     }
 }

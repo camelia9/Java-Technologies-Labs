@@ -9,10 +9,22 @@ public class Course {
     private Integer semester;
     private Integer numberOfCredits;
     private String coursePageURL;
-    private Package belongedPackage;
+    private OptionalPackage belongedPackage;
 
 
     public Course() {
+    }
+
+    public Course(String abreviation, String name, Lecturer lecturer, Integer yearOfStudy,
+                  Integer semester, Integer numberOfCredits, String coursePageURL) {
+
+        this.abreviation = abreviation;
+        this.name = name;
+        this.lecturer = lecturer;
+        this.yearOfStudy = yearOfStudy;
+        this.semester = semester;
+        this.numberOfCredits = numberOfCredits;
+        this.coursePageURL = coursePageURL;
     }
 
     public Course(int id, String abreviation, String name, Lecturer lecturer, Integer yearOfStudy,
@@ -91,11 +103,17 @@ public class Course {
         this.coursePageURL = coursePageURL;
     }
 
-    public Package getBelongedPackage() {
+    public OptionalPackage getBelongedPackage() {
         return belongedPackage;
     }
 
-    public void setBelongedPackage(Package belongedPackage) {
+    @Override
+    public String toString(){
+
+        return this.getName();
+    }
+
+    public void setBelongedPackage(OptionalPackage belongedPackage) {
         this.belongedPackage = belongedPackage;
     }
 

@@ -31,8 +31,6 @@ public class LecturersBean implements Serializable {
     @Size(max = 100)
     private String email;
 
-    private Connection connection;
-
     public LecturersBean(){
         allLecturers = lecturersDAO.getAllLecturers();
     }
