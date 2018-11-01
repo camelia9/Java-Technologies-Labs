@@ -45,7 +45,7 @@ public class PackagesDAO {
             Statement stmt = this.connection.createStatement();
             ResultSet rs = stmt.executeQuery(String.format("SELECT * FROM %s", database.Package.TABLE_NAME));
             while (rs.next())
-                packages.add(new PackageBuilder().fromResultSet(rs, "").build());
+                packages.add(new PackageBuilder().fromResultSet(rs).build());
 
         } catch (SQLException e) {
             e.printStackTrace();

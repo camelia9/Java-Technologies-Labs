@@ -16,19 +16,19 @@ public class CourseBuilder {
         this.course = new Course();
     }
 
-    public CourseBuilder fromResultSet(ResultSet rs, String cprefix, String lprefix, String pprefix) throws SQLException {
-        this.course.setAbreviation(rs.getString(cprefix + database.Course.ABBREVIATION));
-        this.course.setId(rs.getInt(cprefix + database.Course.ID));
-        this.course.setName(rs.getString(cprefix + database.Course.NAME));
-        this.course.setYearOfStudy(rs.getInt(cprefix + database.Course.STUDY_YEAR));
-        this.course.setSemester(rs.getInt(cprefix + database.Course.SEMESTER));
-        this.course.setNumberOfCredits(rs.getInt(cprefix + database.Course.CREDITS_NUMBER));
-        this.course.setCoursePageURL(rs.getString(cprefix + database.Course.COURSE_URL));
+    public CourseBuilder fromResultSet(ResultSet rs) throws SQLException {
+        this.course.setAbreviation(rs.getString(database.Course.ABBREVIATION));
+        this.course.setId(rs.getInt(database.Course.ID));
+        this.course.setName(rs.getString(database.Course.NAME));
+        this.course.setYearOfStudy(rs.getInt(database.Course.STUDY_YEAR));
+        this.course.setSemester(rs.getInt(database.Course.SEMESTER));
+        this.course.setNumberOfCredits(rs.getInt(database.Course.CREDITS_NUMBER));
+        this.course.setCoursePageURL(rs.getString(database.Course.COURSE_URL));
 
         if (this.course.getLecturer() == null)
-            this.course.setLecturer(new LecturerBuilder().fromResultSet(rs, lprefix).build());
+            this.course.setLecturer(new LecturerBuilder().fromResultSet(rs).build());
         if (this.course.getBelongedPackage() == null)
-            this.course.setBelongedPackage(new PackageBuilder().fromResultSet(rs, pprefix).build());
+            this.course.setBelongedPackage(new PackageBuilder().fromResultSet(rs).build());
 
         return this;
     }

@@ -60,7 +60,8 @@ public class CoursesDAO {
             stmt = this.connection.createStatement();
             ResultSet rs = stmt.executeQuery(GET_ALL_COURSES);
             while(rs.next())
-                results.add(new CourseBuilder().fromResultSet(rs, "c ", "l ", "p ").build());
+                results.add(new CourseBuilder().fromResultSet(rs).build());
+            System.out.println(results.size());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -79,7 +80,7 @@ public class CoursesDAO {
             while(rs.next())
                 results.add(
                         new CourseBuilder().setLecturer(l)
-                                .fromResultSet(rs, "c.", "l.", "p.")
+                                .fromResultSet(rs)
                                 .build());
         } catch (SQLException e) {
             e.printStackTrace();
@@ -99,7 +100,7 @@ public class CoursesDAO {
             while(rs.next())
                 results.add(
                         new CourseBuilder().setPackage(p)
-                                .fromResultSet(rs, "c.", "l.", "p.")
+                                .fromResultSet(rs)
                                 .build());
         } catch (SQLException e) {
             e.printStackTrace();

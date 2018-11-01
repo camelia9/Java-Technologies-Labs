@@ -53,7 +53,7 @@ public class LecturersDAO {
             Statement stmt = this.connection.createStatement();
             ResultSet rs = stmt.executeQuery(GET_ALL_LECTURERS_QUERY);
             while (rs.next())
-                lecturers.add(new LecturerBuilder().fromResultSet(rs, "").build());
+                lecturers.add(new LecturerBuilder().fromResultSet(rs).build());
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -71,7 +71,7 @@ public class LecturersDAO {
                     )
             );
             if (rs.next())
-                return new LecturerBuilder().fromResultSet(rs, "").build();
+                return new LecturerBuilder().fromResultSet(rs).build();
 
         } catch (SQLException e) {
             e.printStackTrace();

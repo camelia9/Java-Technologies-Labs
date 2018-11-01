@@ -1,6 +1,5 @@
 package dao;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 import model.Package;
 
 import java.sql.ResultSet;
@@ -14,12 +13,11 @@ public class PackageBuilder {
         this.aPackage = new Package();
     }
 
-    public PackageBuilder fromResultSet(ResultSet rs, String prefix) throws SQLException {
-        prefix = prefix == null ? "" : prefix;
-        this.aPackage.setId(rs.getInt(prefix  + database.Package.ID));
-        this.aPackage.setName(rs.getString(prefix + database.Package.NAME));
-        this.aPackage.setYear(rs.getInt(prefix + database.Package.YEAR));
-        this.aPackage.setSemester(rs.getInt(prefix + database.Package.SEMESTER));
+    public PackageBuilder fromResultSet(ResultSet rs) throws SQLException {
+        this.aPackage.setId(rs.getInt(database.Package.ID));
+        this.aPackage.setName(rs.getString(database.Package.NAME));
+        this.aPackage.setYear(rs.getInt(database.Package.YEAR));
+        this.aPackage.setSemester(rs.getInt(database.Package.SEMESTER));
         return this;
     }
 

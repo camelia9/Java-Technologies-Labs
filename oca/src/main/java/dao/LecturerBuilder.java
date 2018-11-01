@@ -13,11 +13,10 @@ public class LecturerBuilder {
         this.lecturer = new Lecturer();
     }
 
-    public LecturerBuilder fromResultSet(ResultSet rs, String prefix) throws SQLException {
-        prefix = prefix == null ? "" : prefix;
-        this.lecturer.setId(rs.getInt(prefix + database.Lecturer.ID));
-        this.lecturer.setName(rs.getString(prefix + database.Lecturer.NAME));
-        this.lecturer.setEmail(rs.getString(prefix + database.Lecturer.EMAIL));
+    public LecturerBuilder fromResultSet(ResultSet rs) throws SQLException {
+        this.lecturer.setId(rs.getInt(database.Lecturer.ID));
+        this.lecturer.setName(rs.getString(database.Lecturer.NAME));
+        this.lecturer.setEmail(rs.getString(database.Lecturer.EMAIL));
         return this;
     }
 
