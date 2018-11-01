@@ -16,7 +16,7 @@ import java.util.List;
 public class CoursesBean implements Serializable {
     private static final long serialVersionUID = 1L;
     private List<model.Course> allCourses;
-    private CoursesDAO coursesDAO;
+    private CoursesDAO coursesDAO = new CoursesDAO();
 
     private String abreviation;
     private String name;
@@ -28,21 +28,17 @@ public class CoursesBean implements Serializable {
     private OptionalPackage belongedPackage;
 
     public CoursesBean() {
-        coursesDAO = new CoursesDAO();
         allCourses = new ArrayList<>(coursesDAO.getAllCourses());
     }
 
     public List<model.Course> getAllCourses() {
-        return allCourses;
+        return coursesDAO.getAllCourses();
     }
 
-    public void setAllCourses(List<Course> allCourses) {
-        this.allCourses = allCourses;
-    }
-
-    public String submitCourse(){
+    public String addCourse(){
         coursesDAO.insertCourse(new Course(abreviation, name, lecturer, yearOfStudy,
                 semester, numberOfCredits, coursePageURL));
+        allCourses = coursesDAO.getAllCourses();
         return "allCourses";
     }
 

@@ -7,9 +7,7 @@ import model.Lecturer;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
-import java.sql.Connection;
 import java.util.List;
-import java.util.Random;
 
 @ManagedBean(name = "lecturersBean", eager = true)
 @SessionScoped

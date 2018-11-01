@@ -18,7 +18,7 @@ public class PackagesDAO {
     public boolean insertPackage(OptionalPackage aPackage){
         try {
             PreparedStatement preparedStatement = this.connection.prepareStatement(
-                    String.format("INSERT INTO %s(%s %s, %s) VALUES(?, ?, ?)",
+                    String.format("INSERT INTO %s(%s, %s, %s) VALUES(?, ?, ?)",
                             database.Package.TABLE_NAME, database.Package.NAME,
                             database.Package.YEAR, database.Package.SEMESTER));
 

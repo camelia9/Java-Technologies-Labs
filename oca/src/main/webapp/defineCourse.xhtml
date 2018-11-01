@@ -1,51 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+<html xmlns = "http://www.w3.org/1999/xhtml"
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Define Course</title>
 </h:head>
 <h:body>
     <ui:define name="content">
-        <p:outputLabel value="Define a course"/>
-        <h:form id="formE">
-            <br/><br/>
-            <p:outputPanel id="defineCourse">
-                <p:outputLabel value="Name: "/>
+        <h:outputLabel value="Define course"/>
+        <br/><br/>
+        <h:form id="formC">
+            <h:outputLabel id="defineCourse">
+                <h:outputLabel value="Name: "/>
                 <br/>
-                <p:inputText value="#{coursesBean.name} "/>
-                <br/>
-                <br/>
-                <p:outputLabel value="Abreviation: "/><br/>
-                <p:inputText value="#{coursesBean.abreviation} "/>
+                <h:inputText value="#{coursesBean.name}" required="true"/>
                 <br/>
                 <br/>
-                <p:outputLabel value="Lecturer: "/><br/>
-                <p:inputText value="#{coursesBean.lecturer}"/>
+                <h:outputLabel value="Abbreviation: "/>
+                <br/>
+                <h:inputText value="#{coursesBean.abreviation} "/>
                 <br/>
                 <br/>
-                <p:outputLabel value="Year Of Study: "/><br/>
-                <p:inputText value="#{coursesBean.yearOfStudy}"/>
+                <h:outputLabel value="Package: "/>
+                <br/>
+                <h:inputText value="#{coursesBean.belongedPackage} "/>
                 <br/>
                 <br/>
-                <p:outputLabel value="Semester: "/><br/>
-                <p:inputText value="#{coursesBean.semester}"/>
+                <h:outputLabel value="Lecturer: "/><br/>
+                <h:inputText value="#{coursesBean.lecturer} "/>
                 <br/>
                 <br/>
-                <p:outputLabel value="Number of credits: "/><br/>
-                <p:inputText value="#{coursesBean.numberOfCredits} "/>
+                <h:outputLabel value="Year of study: "/><br/>
+                <h:inputText value="#{coursesBean.yearOfStudy} "/>
                 <br/>
                 <br/>
-                <p:outputLabel value="Course page URL: "/><br/>
-                <p:inputText value=" "/>
+                <h:outputLabel value="Semester: "/><br/>
+                <h:inputText value="#{coursesBean.semester} "/>
                 <br/>
                 <br/>
-            </p:outputPanel>
-            <p:commandButton value="Add"  action = "#{coursesBean.submitCourse}"/>
+                <h:outputLabel value="Number of credits: "/><br/>
+                <h:inputText value="#{coursesBean.numberOfCredits} "/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Course page URL: "/><br/>
+                <h:inputText value="#{coursesBean.coursePageURL} "/>
+                <br/>
+                <br/>
+
+            </h:outputLabel>
+            <h:commandButton value="submit" type="submit" action="#{coursesBean.addCourse}">
+                <f:ajax execute="@form" render="@form" />
+            </h:commandButton>
+
         </h:form>
     </ui:define>
 
