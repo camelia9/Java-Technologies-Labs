@@ -4,7 +4,8 @@
 <html  xmlns = "http://www.w3.org/1999/xhtml"
        xmlns:h = "http://java.sun.com/jsf/html"
        xmlns:f = "http://java.sun.com/jsf/core"
-       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Define lecturer</title>
 </h:head>
@@ -20,11 +21,16 @@
                     <br/>
                     <br/>
                     <h:outputLabel value="Email: "/>
-                    <h:inputText value="#{lecturersBean.email}" required="true"/>
+                    <h:inputText id="lecturer-id"
+                                 value="#{lecturersBean.email}"
+                                 required="true"
+                                 validator="#{lecturersBean.validateEmail}"/>
+                    <h:message for="lecturer-id" />
                     <br/>
                     <br/>
 
                 </h:outputLabel>
+
                 <h:commandButton value="submit" action="#{lecturersBean.submitLecturer}">
                     <f:ajax execute="@form" render="@form" />
                 </h:commandButton>
