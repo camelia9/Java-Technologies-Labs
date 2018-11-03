@@ -48,9 +48,4 @@ public class OptionalPackage {
         this.semester = semester;
     }
 
-    @Override
-    public String toString(){
-
-        return this.getName();
-    }
 }

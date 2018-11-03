@@ -10,10 +10,8 @@
     <title>Define Optional Package</title>
 </h:head>
 <h:body>
-    <ui:define name="content">
         <p:outputLabel value="Define optional package"/>
         <br/><br/>
-
         <br/><br/>
         <ui:define name="content">
             <p:outputLabel value="Define an Optional package"/>
@@ -41,15 +39,11 @@
                     </h:selectOneMenu>
                     <br/>
                     <br/>
-
                 </h:outputLabel>
                 <h:commandButton value="submit" action="#{packagesBean.add}">
-                    <f:ajax execute="@form" render="@form" />
                 </h:commandButton>
 
             </h:form>
         </ui:define>
-    </ui:define>
-
 </h:body>
 </html>

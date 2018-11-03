@@ -39,6 +39,10 @@ public class Course {
         this.coursePageURL = coursePageURL;
     }
 
+    public Course(String name){
+        this.setName(name);
+    }
+
     public int getId() {
         return id;
     }

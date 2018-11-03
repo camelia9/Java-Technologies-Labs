@@ -1,6 +1,6 @@
 <html>
 <body>
-<h2>Wellcome to optional course allocation!</h2>
+<h2>Welcome to optional course allocation!</h2>
 <br/>
 <a href="defineLecturer.xhtml">
     <button>Add lecturer</button>
