@@ -13,37 +13,37 @@
 <h:body>
     <p:outputLabel value="Courses list"/>
     <br/><br/>
-    <h:dataTable value = "#{coursesBean.allCourses}" var = "course">
+    <p:dataTable value = "#{coursesBean.allCourses}" var = "course" scrollable="true" scrollHeight="300">
 
-    <h:column>
+    <p:column>
         <f:facet name = "header">Name</f:facet>
         #{course.name}
-    </h:column>
-        <h:column>
+    </p:column>
+        <p:column>
             <f:facet name = "header">Abbreviation</f:facet>
             #{course.abreviation}
-        </h:column>
-        <h:column>
+        </p:column>
+        <p:column>
             <f:facet name = "header">Lecturer</f:facet>
             #{course.lecturer}
-        </h:column>
-        <h:column>
+        </p:column>
+        <p:column>
             <f:facet name = "header">Year of study</f:facet>
             #{course.yearOfStudy}
-        </h:column>
-        <h:column>
+        </p:column>
+        <p:column>
             <f:facet name = "header">Semester</f:facet>
             #{course.semester}
-        </h:column>
-        <h:column>
+        </p:column>
+        <p:column>
             <f:facet name = "header">Package</f:facet>
             #{course.belongedPackage}
-        </h:column>
-        <h:column>
+        </p:column>
+        <p:column>
             <f:facet name = "header">Number of credits</f:facet>
             #{course.numberOfCredits}
-        </h:column>
-    </h:dataTable>
+        </p:column>
+    </p:dataTable>
 </h:body>
 
 </html>
