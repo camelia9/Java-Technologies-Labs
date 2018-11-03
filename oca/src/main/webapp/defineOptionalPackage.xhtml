@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml"
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Define Optional Package</title>
+</h:head>
+<h:body>
+        <p:outputLabel value="Define optional package"/>
+        <br/><br/>
+        <br/><br/>
+        <ui:define name="content">
+            <p:outputLabel value="Define an Optional package"/>
+            <br/><br/>
+            <h:form id="formO">
+                <h:outputLabel id="defineOptionalPackage">
+                    <h:outputLabel value="Name: "/>
+                    <br/>
+                    <h:inputText value="#{packagesBean.name}" required="true"/>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Year: "/>
+                    <br/>
+                    <h:selectOneMenu value="#{packagesBean.year}">
+                        <f:selectItem itemValue="2" itemLabel="2" />
+                        <f:selectItem itemValue="3" itemLabel="3" />
+                    </h:selectOneMenu>
+                    <br/>
+                    <br/>
+                    <h:outputLabel value="Semester: "/>
+                    <br/>
+                    <h:selectOneMenu value="#{packagesBean.semester}">
+                        <f:selectItem itemValue="1" itemLabel="1" />
+                        <f:selectItem itemValue="2" itemLabel="2" />
+                    </h:selectOneMenu>
+                    <br/>
+                    <br/>
+                </h:outputLabel>
+                <h:commandButton value="submit" action="#{packagesBean.add}">
+                </h:commandButton>
+
+            </h:form>
+        </ui:define>
+</h:body>
+</html>
