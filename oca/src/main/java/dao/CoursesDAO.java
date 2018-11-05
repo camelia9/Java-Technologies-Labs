@@ -114,4 +114,43 @@ public class CoursesDAO {
         }
         return false;
     }
+
+    public boolean updateCourse(Course course){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    String.format(
+                        "UPDATE %s SET %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ? WHERE %s = ?",
+                        database.Course.TABLE_NAME, database.Course.ABBREVIATION, database.Course.NAME,
+                        database.Course.STUDY_YEAR, database.Course.SEMESTER, database.Course.CREDITS_NUMBER,
+                        database.Course.COURSE_URL, database.Course.LECTURER, database.Course.PACKAGE,
+                        database.Course.ID));
+            preparedStatement.setString(1, course.getAbreviation());
+            preparedStatement.setString(2, course.getName());
+            preparedStatement.setInt(3, course.getYearOfStudy());
+            preparedStatement.setInt(4, course.getSemester());
+            preparedStatement.setInt(5, course.getNumberOfCredits());
+            preparedStatement.setString(6, course.getCoursePageURL());
+            preparedStatement.setInt(7, course.getLecturer().getId());
+            preparedStatement.setInt(8, course.getBelongedPackage().getId());
+            preparedStatement.setInt(9, course.getId());
+            return 1 == preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean deleteCourse(int id){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    String.format("DELETE FROM %s WHERE %s = ?",
+                            database.Course.TABLE_NAME, database.Course.ID
+            ));
+            preparedStatement.setInt(1, id);
+            return 1 == preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
