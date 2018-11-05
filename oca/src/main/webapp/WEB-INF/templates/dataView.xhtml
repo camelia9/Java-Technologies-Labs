@@ -12,7 +12,7 @@
 
 <h:body>
     <ui:composition>
-        <h:form id="form" rendered="#{not hideTable}">
+        <h:form id="form" >
             <p:dataTable var="item" value="#{items}" scrollable="true" scrollHeight="300" selectionMode="single" rowKey="#"
                          selection="#">
                 <p:columns var="column" value="#{bean.infoColumns}">

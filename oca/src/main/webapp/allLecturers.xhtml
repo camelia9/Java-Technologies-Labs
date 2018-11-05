@@ -12,6 +12,7 @@
 
 <h:body>
     <p:outputLabel value="Lecturers list"/>
+    <h:form id="form">
     <p:dataTable value = "#{lecturersBean.allLecturers}" var = "lecturer" scrollable="true" scrollHeight="300">
 
         <p:column>
@@ -23,7 +24,13 @@
             #{lecturer.email}
         </p:column>
 
+        <p:column>
+            <p:commandButton icon="ui-icon-pencil" ajax="false" value="Edit" action="#"/>
+            <p:commandButton icon="ui-icon-trash" value="Delete" update=":form" action="#{lecturersBean.deleteLecturer(lecturer)}"/>
+        </p:column>
+
     </p:dataTable>
+    </h:form>
 
 
 </h:body>
