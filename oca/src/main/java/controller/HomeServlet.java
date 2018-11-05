@@ -4,6 +4,7 @@ import config.WebRoutes;
 import dao.CoursesDAO;
 import dao.LecturersDAO;
 import database.Database;
+import listener.SessionCounterListener;
 import model.Lecturer;
 
 import javax.servlet.RequestDispatcher;
@@ -24,9 +25,9 @@ public class HomeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        LecturersDAO lecturersDAO= new LecturersDAO();
-        lecturersDAO.insertLecturer(new Lecturer("t","q"));
-
+        //LecturersDAO lecturersDAO= new LecturersDAO();
+        //lecturersDAO.insertLecturer(new Lecturer("t","q"));
+        response.getWriter().write(String.format("Number of sessions is %d", SessionCounterListener.getNumberOfSessions()));
         //RequestDispatcher rd = request.getRequestDispatcher("allLecturers.xhtml");
         //rd.forward(request, response);
     }
