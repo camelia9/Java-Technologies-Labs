@@ -26,6 +26,7 @@ public class CoursesBean implements Serializable {
     private Integer numberOfCredits;
     private String coursePageURL;
     private OptionalPackage belongedPackage;
+    private Course selectedCourse;
 
     public CoursesBean() {
         allCourses = new ArrayList<>(coursesDAO.getAllCourses());
@@ -40,6 +41,10 @@ public class CoursesBean implements Serializable {
                 semester, numberOfCredits, coursePageURL));
         allCourses = coursesDAO.getAllCourses();
         return "allCourses";
+    }
+
+    public void deleteCourse(Course selectedCourse){
+        coursesDAO.deleteCourse(selectedCourse.getId());
     }
 
     public String getAbreviation() {

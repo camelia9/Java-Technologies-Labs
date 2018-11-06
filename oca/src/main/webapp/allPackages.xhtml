@@ -26,6 +26,10 @@
             <f:facet name = "header">Semester</f:facet>
             #{optionalPackage.semester}
         </p:column>
+        <p:column>
+            <f:facet name = "header">Delete</f:facet>
+            <p:commandButton icon="ui-icon-trash" value="Delete" update=":form" action="#{packagesBean.deletePackage(optionalPackage)}"/>
+        </p:column>
 
     </p:dataTable>
 </h:body>
