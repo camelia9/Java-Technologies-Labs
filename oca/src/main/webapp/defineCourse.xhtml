@@ -46,7 +46,10 @@
                 <br/>
                 <br/>
                 <h:outputLabel value="Course page URL: "/><br/>
-                <h:inputText value="#{coursesBean.coursePageURL} "/>
+                <h:inputText id = "urlInput" value = "#{coursesBean.coursePageURL}" label = "URL" converter="urlConverter">
+                </h:inputText>
+
+                <!---<h:inputText value="#{coursesBean.coursePageURL} "/> -->
                 <br/>
                 <br/>
 
