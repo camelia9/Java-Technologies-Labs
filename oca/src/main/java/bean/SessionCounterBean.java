@@ -14,6 +14,7 @@ public class SessionCounterBean implements Serializable {
     private int numberOfSessions;
 
     public int getNumberOfSessions(){
+        System.out.println("get number of sessions");
         return SessionCounterListener.getNumberOfSessions();
     }
 }
