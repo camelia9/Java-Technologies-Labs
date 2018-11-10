@@ -45,6 +45,14 @@ public class LecturersBean implements Serializable {
         lecturersDAO.insertLecturer(lecturer);
     }
 
+    public void updateLecturer(Lecturer selectedLecturer){
+        lecturersDAO.updateLecturer(selectedLecturer);
+    }
+
+    public void deleteLecturer(Lecturer selectedLecturer){
+        lecturersDAO.deleteLecturer(selectedLecturer.getId());
+    }
+
     public void setName(String name) {
         this.name = name;
     }

@@ -73,4 +73,35 @@ public class LecturersDAO {
         }
         return null;
     }
+
+    public boolean updateLecturer(Lecturer lecturer){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    String.format("UPDATE %s SET %s = ?, %s = ? WHERE %s = ?",
+                            database.Lecturer.TABLE_NAME, database.Lecturer.NAME,
+                            database.Lecturer.EMAIL, database.Lecturer.ID)
+            );
+            preparedStatement.setString(1, lecturer.getName());
+            preparedStatement.setString(2, lecturer.getEmail());
+            preparedStatement.setInt(3, lecturer.getId());
+            return 1 == preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean deleteLecturer(int id){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    String.format("DELETE FROM %s WHERE %s = ?",
+                            database.Lecturer.TABLE_NAME, database.Lecturer.ID
+                    ));
+            preparedStatement.setInt(1, id);
+            return 1 == preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

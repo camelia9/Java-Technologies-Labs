@@ -12,21 +12,25 @@
 <h:body>
     <p:outputLabel value="Packages List"/>
     <br/><br/>
-    <h:dataTable value = "#{packagesBean.allPackages}" var = "optionalPackage">
+    <p:dataTable value = "#{packagesBean.allPackages}" var = "optionalPackage" scrollable="true" scrollHeight="300">
 
-        <h:column>
+        <p:column>
             <f:facet name = "header">Name</f:facet>
             #{optionalPackage.name}
-        </h:column>
-        <h:column>
+        </p:column>
+        <p:column>
             <f:facet name = "header">Year</f:facet>
             #{optionalPackage.year}
-        </h:column>
-        <h:column>
+        </p:column>
+        <p:column>
             <f:facet name = "header">Semester</f:facet>
             #{optionalPackage.semester}
-        </h:column>
+        </p:column>
+        <p:column>
+            <f:facet name = "header">Delete</f:facet>
+            <p:commandButton icon="ui-icon-trash" value="Delete" update=":form" action="#{packagesBean.deletePackage(optionalPackage)}"/>
+        </p:column>
 
-    </h:dataTable>
+    </p:dataTable>
 </h:body>
 </html>

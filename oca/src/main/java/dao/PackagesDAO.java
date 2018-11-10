@@ -1,6 +1,7 @@
 package dao;
 
 import database.Database;
+import database.Package;
 import model.OptionalPackage;
 
 import java.sql.*;
@@ -45,5 +46,36 @@ public class PackagesDAO {
             e.printStackTrace();
         }
         return packages;
+    }
+
+    public boolean updatePackage(OptionalPackage p){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(String.format(
+                    "UPDATE %s SET %s = ?, %s = ?, %s = ? WHERE %s = ?",
+                    Package.TABLE_NAME, Package.NAME, Package.YEAR,
+                    Package.SEMESTER, Package.ID
+            ));
+            preparedStatement.setString(1, p.getName());
+            preparedStatement.setInt(2, p.getYear());
+            preparedStatement.setInt(3, p.getYear());
+            preparedStatement.setInt(4, p.getId());
+            return 1 == preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean deletePackage(int id){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    String.format("DELETE FROM %s WHERE %s = ?", Package.TABLE_NAME, Package.ID)
+            );
+            preparedStatement.setInt(1, id);
+            return 1 == preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

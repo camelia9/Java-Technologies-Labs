@@ -18,11 +18,15 @@ public class Database {
             "jdbc:%s://%s:%d/%s?sslmode=require&user=%s&password=%s",
             DATABASE_TYPE, HOST, PORT, DATABASE, USERNAME, PASSWORD
     );
+    private static Connection connection = null;
 
     public static Connection getConnection() {
         try {
-            Class.forName("org.postgresql.Driver");
-            return DriverManager.getConnection(URI);
+            if (connection == null){
+                Class.forName("org.postgresql.Driver");
+                connection = DriverManager.getConnection(URI);
+            }
+            return connection;
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

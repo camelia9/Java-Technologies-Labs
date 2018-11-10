@@ -4,6 +4,7 @@ import dao.CoursesDAO;
 import model.Course;
 import model.Lecturer;
 import model.OptionalPackage;
+import model.UrlData;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -24,8 +25,9 @@ public class CoursesBean implements Serializable {
     private Integer yearOfStudy;
     private Integer semester;
     private Integer numberOfCredits;
-    private String coursePageURL;
+    private UrlData coursePageURL;
     private OptionalPackage belongedPackage;
+    private Course selectedCourse;
 
     public CoursesBean() {
         allCourses = new ArrayList<>(coursesDAO.getAllCourses());
@@ -37,9 +39,13 @@ public class CoursesBean implements Serializable {
 
     public String addCourse(){
         coursesDAO.insertCourse(new Course(abreviation, name, lecturer, yearOfStudy,
-                semester, numberOfCredits, coursePageURL));
+                semester, numberOfCredits, coursePageURL.toString()));
         allCourses = coursesDAO.getAllCourses();
         return "allCourses";
+    }
+
+    public void deleteCourse(Course selectedCourse){
+        coursesDAO.deleteCourse(selectedCourse.getId());
     }
 
     public String getAbreviation() {
@@ -90,11 +96,11 @@ public class CoursesBean implements Serializable {
         this.numberOfCredits = numberOfCredits;
     }
 
-    public String getCoursePageURL() {
+    public UrlData getCoursePageURL() {
         return coursePageURL;
     }
 
-    public void setCoursePageURL(String coursePageURL) {
+    public void setCoursePageURL(UrlData coursePageURL) {
         this.coursePageURL = coursePageURL;
     }
 

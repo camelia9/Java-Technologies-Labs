@@ -17,6 +17,7 @@ public class PackagesBean implements Serializable {
     private int semester;
     public PackagesDAO packagesDAO;
     public List<OptionalPackage> allPackages;
+    public OptionalPackage selectedPackage;
 
     public PackagesBean() {
         packagesDAO= new PackagesDAO();
@@ -27,6 +28,10 @@ public class PackagesBean implements Serializable {
         packagesDAO.insertPackage(new OptionalPackage(name,year,semester));
         allPackages = packagesDAO.getPackages();
         return "allPackages";
+    }
+
+    public void deletePackage(OptionalPackage selectedPackage){
+        packagesDAO.deletePackage(selectedPackage.getId());
     }
 
     public List<OptionalPackage> getAllPackages(){
