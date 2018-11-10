@@ -9,10 +9,8 @@
 
 <h:form>
     Sessions:
-    <b>
-        <h:outputText id="session_counter" value="#{SessionCounterBean.numberOfSessions}"/>
-    </b>
-    <p:poll interval="1" update="session_counter"/>
+    <p:poll interval="0" update="session_counter"/>
+    <h:outputText id="session_counter" value="#{SessionCounterBean.numberOfSessions}"/>
 </h:form>
 
 
