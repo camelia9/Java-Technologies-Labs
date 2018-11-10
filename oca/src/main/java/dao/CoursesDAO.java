@@ -2,6 +2,7 @@ package dao;
 
 
 import database.Database;
+import database.DatabaseConnection;
 import model.Course;
 import model.Lecturer;
 import model.OptionalPackage;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class CoursesDAO {
 
-    private Connection connection;
+    private DatabaseConnection connection;
     private static final String INSERT_QUERY = String.format(
             "INSERT INTO %s(%s, %s, %s, %s, %s, %s, %s) VALUES(?, ?, ?, ?, ?, ?, ?)",
             database.Course.TABLE_NAME, database.Course.ABBREVIATION,database.Course.NAME,
@@ -27,12 +28,12 @@ public class CoursesDAO {
     );
 
     public CoursesDAO(){
-        this.connection = Database.getConnection();
+        this.connection = DatabaseConnection.getConnection();
     }
 
     public boolean insertCourse(Course course){
         try {
-            PreparedStatement preparedStatement = this.connection.prepareStatement(INSERT_QUERY);
+            PreparedStatement preparedStatement = this.connection.getConn().prepareStatement(INSERT_QUERY);
             preparedStatement.setString(1, course.getAbreviation());
             preparedStatement.setString(2, course.getName());
             preparedStatement.setInt(3, course.getYearOfStudy());
@@ -51,7 +52,7 @@ public class CoursesDAO {
         Statement stmt = null;
         List<Course> results = new LinkedList<>();
         try {
-            stmt = this.connection.createStatement();
+            stmt = this.connection.getConn().createStatement();
             ResultSet rs = stmt.executeQuery(GET_ALL_COURSES);
             while(rs.next())
                 results.add(new CourseBuilder().fromResultSet(rs).build());
@@ -65,7 +66,7 @@ public class CoursesDAO {
         Statement stmt = null;
         List<Course> results = new LinkedList<>();
         try {
-            stmt = this.connection.createStatement();
+            stmt = this.connection.getConn().createStatement();
             ResultSet rs = stmt.executeQuery(String.format(
                     "%s WHERE c.%s = %d", GET_ALL_COURSES,
                     database.Course.LECTURER, l.getId())
@@ -85,7 +86,7 @@ public class CoursesDAO {
         Statement stmt = null;
         List<Course> results = new LinkedList<>();
         try {
-            stmt = this.connection.createStatement();
+            stmt = this.connection.getConn().createStatement();
             ResultSet rs = stmt.executeQuery(String.format(
                     "%s WHERE c.%s = %d", GET_ALL_COURSES,
                     database.Course.PACKAGE, p.getId())
@@ -103,7 +104,7 @@ public class CoursesDAO {
 
     public boolean setPackage(int courseId, int packageId){
         try {
-            PreparedStatement prepStmt = this.connection.prepareStatement(String.format(
+            PreparedStatement prepStmt = this.connection.getConn().prepareStatement(String.format(
                     "UPDATE %s SET %s = ? WHERE %s = ?", database.Course.TABLE_NAME,
                     database.Course.PACKAGE, database.Course.ID));
             prepStmt.setInt(1, packageId);
@@ -117,7 +118,7 @@ public class CoursesDAO {
 
     public boolean updateCourse(Course course){
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
+            PreparedStatement preparedStatement = connection.getConn().prepareStatement(
                     String.format(
                         "UPDATE %s SET %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ?, %s = ? WHERE %s = ?",
                         database.Course.TABLE_NAME, database.Course.ABBREVIATION, database.Course.NAME,
@@ -142,7 +143,7 @@ public class CoursesDAO {
 
     public boolean deleteCourse(int id){
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(
+            PreparedStatement preparedStatement = connection.getConn().prepareStatement(
                     String.format("DELETE FROM %s WHERE %s = ?",
                             database.Course.TABLE_NAME, database.Course.ID
             ));
