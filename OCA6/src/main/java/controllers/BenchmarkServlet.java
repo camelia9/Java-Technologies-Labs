@@ -8,12 +8,16 @@ package controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,8 +33,19 @@ import javax.sql.DataSource;
 public class BenchmarkServlet extends HttpServlet {
 
     private int connectionsCount = 0;
-    @Resource(mappedName="jdbc/Postgres")
     DataSource dataSource;
+    
+     @Override
+    public void init(){
+        Context ctx;
+        try {
+            ctx = new InitialContext();
+            dataSource = (DataSource)ctx.lookup("jdbc/Postgres");
+        } catch (NamingException ex) {
+            Logger.getLogger(BenchmarkServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
     
     public synchronized Connection getPoolConnection() throws SQLException {
         connectionsCount++;
@@ -38,13 +53,66 @@ public class BenchmarkServlet extends HttpServlet {
         return dataSource.getConnection();
     }
     
- 
+       public boolean makeSelect(Connection conn, String ipAddress, String queryString, String connType) throws SQLException {
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM info");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        finally {
+            if (connType.equals("pool")) {
+                conn.close();
+                System.out.println("connection closed!");
+            }
+        }
+        return true;
+    }
+
+
+    public boolean makeInsert(Connection conn, String ipAddress, String queryString, String connType) throws SQLException {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("insert into info(remote_addr, request_params) values(?, ?)");
+            stmt.setString(1, ipAddress);
+            stmt.setString(2, queryString);
+            stmt.executeUpdate();
+            System.out.println("insert executed");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        finally {
+            if (connType.equals("pool")) {
+                conn.close();
+                System.out.println("connection closed!");
+            }
+        }
+        return true;
+    }
+    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-        response.getWriter().write("Hello World");
+     
+        Connection conn = null;
+        try {
+            conn = this.getPoolConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(BenchmarkServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        response.setContentType("text/html");
+
+        PrintWriter out = response.getWriter();
         
+        if(conn != null) {
+            out.println("<h1> Succesfully connected </h1>");
+        }
+        else{
+            out.println("<h1> Failed operation </h1>");
+        }
     }
 
 

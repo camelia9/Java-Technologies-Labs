@@ -13,12 +13,12 @@
 
     <div>
         <h3>Connection pool operations</h3>
-        <form action="/benchmark" method="get">
+        <form action="/OCA6/benchmark" method="get">
             <input type="hidden" name="connType" value="poolInsert"/>
             <input type="submit" value="Insert"/>
         </form>
 
-        <form action="/benchmark" method="get">
+        <form action="/OCA6/benchmark" method="get">
             <input type="hidden" name="connType" value="poolSelect"/>
             <input type="submit" value="Select"/>
         </form>
