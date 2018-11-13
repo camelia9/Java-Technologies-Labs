@@ -91,27 +91,37 @@ public class BenchmarkServlet extends HttpServlet {
         return true;
     }
     
+   
+ //http://localhost:8080/OCA6/benchmark?connType=poolInsert
+//http://localhost:8080/OCA6/benchmark?connType=poolSelect
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-     
-        Connection conn = null;
-        try {
-            conn = this.getPoolConnection();
-        } catch (SQLException ex) {
-            Logger.getLogger(BenchmarkServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        response.setContentType("text/html");
-
-        PrintWriter out = response.getWriter();
         
-        if(conn != null) {
-            out.println("<h1> Succesfully connected </h1>");
-        }
-        else{
-            out.println("<h1> Failed operation </h1>");
+        String connType = request.getParameter("connType");
+        String ipAddress = request.getRemoteAddr();
+        String queryString = request.getQueryString();
+        boolean result = false;
+        
+        switch (connType){
+            case "poolInsert":
+                Connection conn = null;
+                try {
+                    conn = this.getPoolConnection();
+                    result = this.makeInsert(conn, ipAddress, queryString, "pool");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "poolSelect":
+                try {
+                    conn = this.getPoolConnection();
+                    result = this.makeSelect(conn, ipAddress, queryString, "pool");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
         }
     }
 
