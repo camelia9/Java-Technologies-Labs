@@ -40,7 +40,7 @@ public class BenchmarkServlet extends HttpServlet {
         Context ctx;
         try {
             ctx = new InitialContext();
-            dataSource = (DataSource)ctx.lookup("jdbc/Postgres");
+            dataSource = (DataSource)ctx.lookup("java:comp/env/jdbc/Postgres");
         } catch (NamingException ex) {
             Logger.getLogger(BenchmarkServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,7 +73,7 @@ public class BenchmarkServlet extends HttpServlet {
 
     public boolean makeInsert(Connection conn, String ipAddress, String queryString, String connType) throws SQLException {
         try {
-            PreparedStatement stmt = conn.prepareStatement("insert into info(remote_addr, request_params) values(?, ?)");
+            PreparedStatement stmt = conn.prepareStatement("insert into info (remote_addr, request_params) values(?, ?)");
             stmt.setString(1, ipAddress);
             stmt.setString(2, queryString);
             stmt.executeUpdate();
@@ -108,8 +108,14 @@ public class BenchmarkServlet extends HttpServlet {
             case "poolInsert":
                 Connection conn = null;
                 try {
+                    System.out.println("MAKE INSERT");
                     conn = this.getPoolConnection();
-                    result = this.makeInsert(conn, ipAddress, queryString, "pool");
+                    Statement stmt = conn.createStatement();
+                    ResultSet resultSet = stmt.executeQuery("SELECT * FROM INFO");
+                    while(resultSet.next()){
+                        System.out.println(resultSet.getString("tablename"));
+                    }
+                    //result = this.makeInsert(conn, ipAddress, queryString, "pool");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
