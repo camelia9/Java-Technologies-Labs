@@ -6,13 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author brusu
  */
 @Entity
+@Table(name="courses")
 public class Course implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -33,9 +36,10 @@ public class Course implements Serializable {
 	@Column(name="course_url")
 	private String courseURL;
 	@ManyToOne
+	@JoinColumn(name="lecturer")
 	private Lecturer lecturer;
 	@ManyToOne
-	@Column(name="package")
+	@JoinColumn(name="package")
 	private CoursePackage coursePackage;
 
 	public String getAbbreviation() {

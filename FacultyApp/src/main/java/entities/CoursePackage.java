@@ -8,12 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author brusu
  */
 @Entity
+@Table(name="packages")
 public class CoursePackage implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -28,7 +30,7 @@ public class CoursePackage implements Serializable {
 	@Column(name="package_semester")
 	private int semester;
 	
-	@OneToMany(targetEntity=Course.class)
+	@OneToMany(mappedBy="coursePackage")
 	private List<Course> courses;
 
 	public String getName() {
