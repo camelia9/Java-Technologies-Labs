@@ -20,7 +20,7 @@ public class Lecturer implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "lecturer_id")
     private Long id;
     @Column(name = "lecturer_name")
@@ -31,6 +31,21 @@ public class Lecturer implements Serializable {
     @OneToMany(mappedBy = "lecturer")
     private List<Course> courses;
 
+    public Lecturer(){
+        
+    }
+    
+    public Lecturer(Long id) {
+        this.id = id;
+    }
+
+    public Lecturer(Long id, String name, String email, List<Course> courses) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.courses = courses;
+    }
+    
     public List<Course> getCourses() {
         return courses;
     }
