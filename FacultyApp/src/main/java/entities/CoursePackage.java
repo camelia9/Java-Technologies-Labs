@@ -15,86 +15,86 @@ import javax.persistence.Table;
  * @author brusu
  */
 @Entity
-@Table(name="packages")
+@Table(name = "packages")
 public class CoursePackage implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="package_id")
-	private Long id;
-	@Column(name="package_name")
-	private String name;
-	@Column(name="package_year")
-	private int year;
-	@Column(name="package_semester")
-	private int semester;
-	
-	@OneToMany(mappedBy="coursePackage")
-	private List<Course> courses;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "package_id")
+    private Long id;
+    @Column(name = "package_name")
+    private String name;
+    @Column(name = "package_year")
+    private int year;
+    @Column(name = "package_semester")
+    private int semester;
 
-	public String getName() {
-		return name;
-	}
+    @OneToMany(mappedBy = "coursePackage")
+    private List<Course> courses;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public int getYear() {
-		return year;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setYear(int year) {
-		this.year = year;
-	}
+    public int getYear() {
+        return year;
+    }
 
-	public int getSemester() {
-		return semester;
-	}
+    public void setYear(int year) {
+        this.year = year;
+    }
 
-	public void setSemester(int semester) {
-		this.semester = semester;
-	}
+    public int getSemester() {
+        return semester;
+    }
 
-	public List<Course> getCourses() {
-		return courses;
-	}
+    public void setSemester(int semester) {
+        this.semester = semester;
+    }
 
-	public void setCourses(List<Course> courses) {
-		this.courses = courses;
-	}
+    public List<Course> getCourses() {
+        return courses;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof CoursePackage)) {
-			return false;
-		}
-		CoursePackage other = (CoursePackage) object;
-		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-			return false;
-		}
-		return true;
-	}
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
 
-	@Override
-	public String toString() {
-		return "entities.CoursePackage[ id=" + id + " ]";
-	}
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof CoursePackage)) {
+            return false;
+        }
+        CoursePackage other = (CoursePackage) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "entities.CoursePackage[ id=" + id + " ]";
+    }
 }
