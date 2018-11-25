@@ -29,10 +29,24 @@ public class Student implements Serializable {
     @Column
     private int semester;
     
-    @OneToMany(mappedBy="lecturer")
+    @OneToMany(mappedBy="student")
     private List<Grade>  grades;
-    
-    // TODO map courses and grades
+
+    public Student() {
+    }
+
+    public Student(Long id) {
+        this.id = id;
+    }
+
+    public Student(Long id, String name, String email, int year, int semester, List<Grade> grades) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.year = year;
+        this.semester = semester;
+        this.grades = grades;
+    }
     
     public Long getId() {
         return id;
@@ -42,7 +56,45 @@ public class Student implements Serializable {
         this.id = id;
     }
 
-    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getSemester() {
+        return semester;
+    }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
+    }
+
+    public List<Grade> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(List<Grade> grades) {
+        this.grades = grades;
+    }
     
     @Override
     public int hashCode() {
