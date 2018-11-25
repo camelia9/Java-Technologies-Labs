@@ -27,7 +27,7 @@ public class GenericRepo<T> {
         return em.find(entityType, entityId);
     }
     
-    public void insertEntity(final T entity){
+    protected void insertEntity(final T entity){
         executeTransaction(new ITransaction(){
             @Override
             public void makeTransaction() {
@@ -36,21 +36,27 @@ public class GenericRepo<T> {
         });
     }
     
-    public void deleteEntity(final long entityId){
+    protected void deleteEntity(final long entityId){
         executeTransaction(new ITransaction(){
             @Override
-            public void makeTransaction() {                
-                em.remove(getEntity(entityId));
+            public void makeTransaction() {         
+                T entityToDelete = getEntity(entityId);
+                if (entityToDelete != null)
+                    em.remove(entityToDelete);
             }  
         });
     }
     
-    public void updateEntity(final T entity){
+    protected void updateEntity(final T entity){
         executeTransaction(new ITransaction(){
             @Override
             public void makeTransaction() {
                 em.merge(entity);
             }
         });
+    }
+    
+    public void close(){
+        em.close();
     }
 }
