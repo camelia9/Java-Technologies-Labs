@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LecturerViewDlg" widgetVar="LecturerViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewLecturerTitle}">
+            <h:form id="LecturerViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{lecturerController.selected != null}">
+                        <h:outputText value="#{bundle.ViewLecturerLabel_id}"/>
+                        <h:outputText value="#{lecturerController.selected.id}" title="#{bundle.ViewLecturerTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewLecturerLabel_name}"/>
+                        <h:outputText value="#{lecturerController.selected.name}" title="#{bundle.ViewLecturerTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewLecturerLabel_email}"/>
+                        <h:outputText value="#{lecturerController.selected.email}" title="#{bundle.ViewLecturerTitle_email}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="LecturerViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
