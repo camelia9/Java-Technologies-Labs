@@ -23,7 +23,7 @@ import repositories.CoursesRepo;
 @SessionScoped
 public class CourseController implements Serializable {
 
-    @EJB
+    //@EJB
     //private beanns.CourseFacade ejbFacade;
     private List<Course> items = null;
     private Course selected;
