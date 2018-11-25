@@ -20,7 +20,7 @@ public class Course implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "course_id")
     private Long id;
     @Column
@@ -42,6 +42,25 @@ public class Course implements Serializable {
     @JoinColumn(name = "package")
     private CoursePackage coursePackage;
 
+    public Course() {
+    }
+
+    public Course(Long id) {
+        this.id = id;
+    }
+
+    public Course(Long id, String abbreviation, String name, int yearStudy, int semester, int numberOfCredits, String courseURL, Lecturer lecturer, CoursePackage coursePackage) {
+        this.id = id;
+        this.abbreviation = abbreviation;
+        this.name = name;
+        this.yearStudy = yearStudy;
+        this.semester = semester;
+        this.numberOfCredits = numberOfCredits;
+        this.courseURL = courseURL;
+        this.lecturer = lecturer;
+        this.coursePackage = coursePackage;
+    }
+    
     public String getAbbreviation() {
         return abbreviation;
     }
