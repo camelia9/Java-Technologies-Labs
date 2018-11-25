@@ -20,7 +20,7 @@ public class CoursePackage implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "package_id")
     private Long id;
     @Column(name = "package_name")
@@ -33,10 +33,25 @@ public class CoursePackage implements Serializable {
     @OneToMany(mappedBy = "coursePackage")
     private List<Course> courses;
 
+    public CoursePackage() {
+    }
+
+    public CoursePackage(Long id) {
+        this.id = id;
+    }
+
+    public CoursePackage(Long id, String name, int year, int semester, List<Course> courses) {
+        this.id = id;
+        this.name = name;
+        this.year = year;
+        this.semester = semester;
+        this.courses = courses;
+    }
+
     public String getName() {
         return name;
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
