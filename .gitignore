@@ -1,4 +1,8 @@
-.idea/
-out/ 
+**/.idea/
+**/out/ 
 *.iml
-target/
+**/target/
+**/lib/
+*.war
+**/java/test/
+*.class
