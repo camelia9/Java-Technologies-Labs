@@ -3,11 +3,13 @@ package entities;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 /**
@@ -16,45 +18,75 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="grades")
-@IdClass(GradeId.class)
 public class Grade implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @Column(name="student")
-    private Long studentId;
-    @Id
-    @Column(name="course")
-    private Long courseId;
+   @EmbeddedId
+   private GradeId id;
     @Column
     private Float grade;
 
+    /*
+    @MapsId("studentId")
     @ManyToOne
-    @JoinColumn(name = "studentId")
+    @JoinColumn(name = "studentId", referencedColumnName="id", insertable=false, updatable=false)
     private Student student;
+    
+    @MapsId("courseId")
     @ManyToOne
-    @JoinColumn(name = "courseId")
+    @JoinColumn(name = "courseId", referencedColumnName="course_id", insertable=false, updatable=false)
     private Course course;
-
+*/
+    
     public Grade() {
     }
     
-    public Grade(Long studentId, Long courseId, Float grade) {
-        this.studentId = studentId;
-        this.courseId = courseId;
+    public Grade(GradeId id, Float grade) {
+        this.id = id;
         this.grade = grade;
     }
 
-    public Grade(Long studentId, Long courseId) {
-        this.studentId = studentId;
-        this.courseId = courseId;
+    public Grade(GradeId id) {
+        this.id = id;
+    }
+
+    public GradeId getId(){
+        return this.id;
+    }
+    
+    public void setId(GradeId id){
+        this.id = new GradeId(id.studentId, id.courseId);
+    }
+
+    public Float getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Float grade) {
+        this.grade = grade;
+    }
+
+    public Student getStudent() {
+        return null; //student;
+    }
+
+    public void setStudent(Student student) {
+        //this.student = student;
+    }
+
+    public Course getCourse() {
+        return null; // course;
+    }
+
+    public void setCourse(Course course) {
+        //this.course = course;
     }
     
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (studentId != null ? studentId.hashCode() : 0) + (courseId != null ? courseId.hashCode() : 0);
+        hash += this.id.hashCode();
         return hash;
     }
 
@@ -65,8 +97,7 @@ public class Grade implements Serializable {
             return false;
         }
         Grade other = (Grade) object;
-        return !(this.studentId == null || this.courseId == null || other.studentId == null || other.courseId == null ||
-                !Objects.equals(this.studentId, other.studentId) || !Objects.equals(this.courseId, other.courseId));
+        return (this.id != null && other.id != null && this.id.equals(other));
     }
     
 }

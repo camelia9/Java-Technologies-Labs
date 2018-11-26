@@ -29,9 +29,10 @@ public class Student implements Serializable {
     @Column
     private int semester;
     
+    /*
     @OneToMany(mappedBy="student")
     private List<Grade>  grades;
-
+    */
     public Student() {
     }
 
@@ -45,7 +46,7 @@ public class Student implements Serializable {
         this.email = email;
         this.year = year;
         this.semester = semester;
-        this.grades = grades;
+        //this.grades = grades;
     }
     
     public Long getId() {
@@ -88,6 +89,7 @@ public class Student implements Serializable {
         this.semester = semester;
     }
 
+    /*
     public List<Grade> getGrades() {
         return grades;
     }
@@ -95,7 +97,7 @@ public class Student implements Serializable {
     public void setGrades(List<Grade> grades) {
         this.grades = grades;
     }
-    
+    */
     @Override
     public int hashCode() {
         int hash = 0;

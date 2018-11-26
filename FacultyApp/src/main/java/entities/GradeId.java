@@ -2,14 +2,21 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
 /**
  *
  * @author brusu
  */
+@Embeddable
 public class GradeId implements Serializable {
     
+    private static final long serialVersionUID = 1L;
+    
+    @Column
     protected Long studentId;
+    @Column
     protected Long courseId;
 
     public GradeId() {
@@ -17,6 +24,22 @@ public class GradeId implements Serializable {
 
     public GradeId(Long studentId, Long courseId) {
         this.studentId = studentId;
+        this.courseId = courseId;
+    }
+
+    public Long getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
+    }
+
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Long courseId) {
         this.courseId = courseId;
     }
 
