@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -64,11 +65,8 @@ public class Grade implements Serializable {
             return false;
         }
         Grade other = (Grade) object;
-        if (this.studentId == null || this.courseId == null || other.studentId == null || other.courseId == null ||
-             this.studentId != other.studentId || this.courseId != other.courseId){
-            return false;
-        }
-        return true;
+        return !(this.studentId == null || this.courseId == null || other.studentId == null || other.courseId == null ||
+                !Objects.equals(this.studentId, other.studentId) || !Objects.equals(this.courseId, other.courseId));
     }
     
 }
