@@ -2,16 +2,21 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
 /**
  *
  * @author brusu
  */
+@Embeddable
 public class PreferenceId implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
+    @Column(name="course")
     protected Long courseId;
+    @Column(name="required_course")
     protected Long requiredCourseId;
 
     public PreferenceId() {
@@ -22,6 +27,24 @@ public class PreferenceId implements Serializable {
         this.requiredCourseId = requiredCourseId;
     }
 
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
+    }
+
+    public Long getRequiredCourseId() {
+        return requiredCourseId;
+    }
+
+    public void setRequiredCourseId(Long requiredCourseId) {
+        this.requiredCourseId = requiredCourseId;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 5;
