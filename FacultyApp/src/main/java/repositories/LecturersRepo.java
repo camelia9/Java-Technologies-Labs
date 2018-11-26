@@ -8,7 +8,7 @@ import javax.persistence.Query;
  *
  * @author brusu
  */
-public class LecturersRepo extends GenericRepo<Lecturer> {
+public class LecturersRepo extends GenericRepo<Lecturer, Long> {
 
     private Query selectAll;
     

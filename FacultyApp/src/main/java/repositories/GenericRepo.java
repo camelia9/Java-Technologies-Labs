@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
  *
  * @author brusu
  */
-public class GenericRepo<T> {
+public class GenericRepo<T, K> {
     
     protected EntityManager em;
     private Class<T> entityType;
@@ -23,7 +23,7 @@ public class GenericRepo<T> {
         em.getTransaction().commit();
     }
     
-    protected T getEntity(long entityId) {
+    protected T getEntity(K entityId) {
         return em.find(entityType, entityId);
     }
     
@@ -36,7 +36,7 @@ public class GenericRepo<T> {
         });
     }
     
-    protected void deleteEntity(final long entityId){
+    protected void deleteEntity(final K entityId){
         executeTransaction(new ITransaction(){
             @Override
             public void makeTransaction() {         

@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author brusu
  */
-public class CoursesRepo extends GenericRepo<Course> {
+public class CoursesRepo extends GenericRepo<Course, Long> {
     
     private Query selectAll;
     

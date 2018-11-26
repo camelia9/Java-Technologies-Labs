@@ -8,7 +8,7 @@ import javax.persistence.Query;
  *
  * @author brusu
  */
-public class PackagesRepo extends GenericRepo<CoursePackage> {
+public class PackagesRepo extends GenericRepo<CoursePackage, Long> {
     
     Query selectAll = null;
     
