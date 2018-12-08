@@ -158,6 +158,6 @@ public class Course implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Course[ id=" + id + " ]";
+        return this.getName();
     }
 }

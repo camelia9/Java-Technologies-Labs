@@ -100,7 +100,7 @@ public class Lecturer implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Lecturer[ id=" + id + " ]";
+        return this.getName();
     }
 
 }
