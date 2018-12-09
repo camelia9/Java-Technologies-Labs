@@ -11,43 +11,15 @@
 </h:head>
 
     <h:body>
-        <p:outputLabel value="Search courses"/>
+   <p:outputLabel value="Search courses"/>
         <br/><br/>
         <h:form id="form">
             <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
-                <h:outputLabel for = "name" value="Course name: " />
-                <br/>
-                
-                <h:outputLabel for = "year" value="Year of study: " />
-                <p:selectOneMenu id = "year" value="#" style="width:125px">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItem itemLabel="1" itemValue="1" />
-                    <f:selectItem itemLabel="2" itemValue="2" />
-                    <f:selectItem itemLabel="3" itemValue="3" />
-                </p:selectOneMenu>
-                <p:selectBooleanCheckbox value="#" />
-                
-                <br/>
-                
-                 <h:outputLabel for = "semester" value="Semester: " />
-                <p:selectOneMenu id = "semester" value="#" style="width:125px">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItem itemLabel="1" itemValue="1" />
-                    <f:selectItem itemLabel="2" itemValue="2" />
-                </p:selectOneMenu>
-                <p:selectBooleanCheckbox value="#" />
-                
-                <br/>
-
-                <h:outputLabel for = "lecturer" value="Lecturer" />
-                <p:selectOneMenu id = "lecturer" value="#">
-                    <f:selectItem itemLabel="Select One" itemValue="" />
-                    <f:selectItems value="#" />
-                </p:selectOneMenu>
-                <p:selectBooleanCheckbox value="#" />
+                <h:outputLabel for="name" value="Course name: " />
+                <h:inputText id = "name" value="#{coursesBean.courseSearch.name}"/>
+                <p:selectBooleanCheckbox value="#{coursesBean.courseSearch.isNameSelected}" />
             </h:panelGrid>
-
-            <h:commandButton value="Search" action="#"/>
+            <h:commandButton value="Search" action="#{coursesBean.filterCourses()}"/>
         </h:form>
 </h:body>
 </html>

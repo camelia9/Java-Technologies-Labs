@@ -26,6 +26,13 @@ public class LecturersRepo extends GenericRepo<Lecturer, Long> {
        return getEntity(lecturerId);
    }
    
+   public Lecturer getLecturerByName (String name) {
+       Query q = em.createQuery("SELECT l from Lecturer l where l.name = :name");
+        q.setParameter("name", name);
+        Lecturer lecturer = (Lecturer) q.getSingleResult();
+        return lecturer;
+   }
+   
    public void insertLecturer(Lecturer lecturer){
        insertEntity(lecturer);
    }
@@ -37,4 +44,6 @@ public class LecturersRepo extends GenericRepo<Lecturer, Long> {
    public void deleteLecturer(long lecturerId){
        deleteEntity(lecturerId);
    }
+   
+  
 }
