@@ -1,6 +1,7 @@
 package repositories;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
@@ -10,10 +11,12 @@ import javax.persistence.Persistence;
 public class GenericRepo<T, K> {
     
     protected EntityManager em;
+    protected EntityManagerFactory factory;
     private Class<T> entityType;
     
     public GenericRepo(Class<T> type){
-        em = Persistence.createEntityManagerFactory("persistenceUnit").createEntityManager();
+        factory = Persistence.createEntityManagerFactory("persistenceUnit");
+        em = factory.createEntityManager();
         entityType = type;
     }
     

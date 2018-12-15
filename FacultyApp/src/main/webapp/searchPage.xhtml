@@ -19,7 +19,7 @@
                 <h:inputText id = "name" value="#{coursesBean.courseSearch.name}"/>
                 <p:selectBooleanCheckbox value="#{coursesBean.courseSearch.isNameSelected}" />
             </h:panelGrid>
-            <h:commandButton value="Search" action="#{coursesBean.filterCourses()}"/>
+            <h:commandButton value="Search" action="#{coursesBean.filterCourses}"/>
         </h:form>
 </h:body>
 </html>

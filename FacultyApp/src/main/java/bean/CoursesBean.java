@@ -9,7 +9,9 @@ import entities.Course;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import model.CourseSearch;
@@ -20,7 +22,7 @@ import repositories.CoursesRepo;
  * @author milut
  */
 @Named(value = "coursesBean")
-@RequestScoped
+@SessionScoped
 public class CoursesBean implements Serializable{
     private CoursesRepo coursesRepo;
     private List<Course> allCourses;
@@ -31,8 +33,15 @@ public class CoursesBean implements Serializable{
         coursesRepo = new CoursesRepo();
         allCourses = coursesRepo.getCourses();
         courseSearch = new CourseSearch();
-        filteredCourses = new ArrayList();
+        
     }
+    
+     @PostConstruct
+    public void init(){
+        
+       /// filteredCourses = new ArrayList();
+    }
+
 
     public CoursesRepo getCoursesRepo() {
         return coursesRepo;
@@ -59,9 +68,9 @@ public class CoursesBean implements Serializable{
     }
     
      public String filterCourses(){
-        System.out.println("filtering");
         filteredCourses = coursesRepo.filterCourses(courseSearch);
-        FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "filteredCourses.xhtml");
+        System.out.println(filteredCourses.size());
+        //FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "filteredCourses.xhtml");
         return "filteredCourses.xhtml?faces-redirect=true";
     }
 
