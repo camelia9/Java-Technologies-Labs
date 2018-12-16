@@ -3,6 +3,7 @@ package repositories;
 import entities.Course;
 import entities.Course_;
 import entities.Lecturer;
+import interceptor.CallInterceptor;
 import javax.persistence.Query;
 import java.util.List;
 import model.CourseSearch;
@@ -10,11 +11,13 @@ import javax.persistence.*;
 import javax.persistence.criteria.*;
 import java.util.*;
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 
 /**
  *
  * @author brusu
  */
+@Interceptors({CallInterceptor.class})
 @Stateless
 public class CoursesRepo extends GenericRepo<Course, Long> {
     
