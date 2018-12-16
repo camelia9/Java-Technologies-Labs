@@ -7,13 +7,10 @@ package bean;
 
 import entities.Course;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import model.CourseSearch;
 import repositories.CoursesRepo;
@@ -41,7 +38,6 @@ public class CoursesBean implements Serializable{
         courseSearch = new CourseSearch();
     }
 
-
     public CoursesRepo getCoursesRepo() {
         return coursesRepo;
     }
@@ -68,7 +64,6 @@ public class CoursesBean implements Serializable{
     
      public String filterCourses(){
         filteredCourses = coursesRepo.filterCourses(courseSearch);
-        System.out.println(filteredCourses.size());
         //FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "filteredCourses.xhtml");
         return "filteredCourses.xhtml?faces-redirect=true";
     }
@@ -80,7 +75,4 @@ public class CoursesBean implements Serializable{
     public void setFilteredCourses(List<Course> filteredCourses) {
         this.filteredCourses = filteredCourses;
     }
-     
-     
-        
 }
