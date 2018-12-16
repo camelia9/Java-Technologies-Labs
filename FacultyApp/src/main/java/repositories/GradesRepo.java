@@ -4,6 +4,10 @@ import entities.Grade;
 import entities.GradeId;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,6 +18,7 @@ import javax.persistence.Query;
  * @author brusu
  */
 @Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class GradesRepo extends GenericRepo<Grade, GradeId> {
     
     @PersistenceContext(name="persistenceUnit") 
@@ -43,14 +48,17 @@ public class GradesRepo extends GenericRepo<Grade, GradeId> {
         return getEntity(gradeId);
     }
     
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void insertGrade(Grade grade){
         insertEntity(grade);
     }
     
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void deleteGrade(GradeId gradeId){
         deleteEntity(gradeId);
     }
     
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void updateGrade(Grade grade){
         updateEntity(grade);
     }

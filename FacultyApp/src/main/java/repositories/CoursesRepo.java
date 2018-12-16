@@ -10,7 +10,7 @@ import model.CourseSearch;
 import javax.persistence.*;
 import javax.persistence.criteria.*;
 import java.util.*;
-import javax.ejb.Stateless;
+import javax.ejb.*;
 import javax.interceptor.Interceptors;
 
 /**
@@ -19,6 +19,7 @@ import javax.interceptor.Interceptors;
  */
 @Interceptors({CallInterceptor.class})
 @Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class CoursesRepo extends GenericRepo<Course, Long> {
     
     @PersistenceContext(name="persistenceUnit") 
@@ -45,14 +46,17 @@ public class CoursesRepo extends GenericRepo<Course, Long> {
         return getEntity(courseId);
     }
     
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void insertCourse(Course course){
         insertEntity(course);
     }
     
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void updateCourse(Course updatedCourse){
         updateEntity(updatedCourse);
     }
     
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void deleteCourse(long courseId){
         deleteEntity(courseId);
     }

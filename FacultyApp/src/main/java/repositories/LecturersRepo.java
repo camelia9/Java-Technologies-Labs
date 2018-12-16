@@ -3,6 +3,10 @@ package repositories;
 import entities.Lecturer;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,6 +17,7 @@ import javax.persistence.Query;
  * @author brusu
  */
 @Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class LecturersRepo extends GenericRepo<Lecturer, Long> {
 
     @PersistenceContext(name="persistenceUnit") 
@@ -40,17 +45,18 @@ public class LecturersRepo extends GenericRepo<Lecturer, Long> {
         return lecturer;
    }
    
+   @TransactionAttribute(TransactionAttributeType.REQUIRED)
    public void insertLecturer(Lecturer lecturer){
        insertEntity(lecturer);
    }
    
+   @TransactionAttribute(TransactionAttributeType.REQUIRED)
    public void updateLecturer(Lecturer lecturer){
        updateEntity(lecturer);
    }
    
+   @TransactionAttribute(TransactionAttributeType.REQUIRED)
    public void deleteLecturer(long lecturerId){
        deleteEntity(lecturerId);
    }
-   
-  
 }
