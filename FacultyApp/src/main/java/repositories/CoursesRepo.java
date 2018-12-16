@@ -8,15 +8,21 @@ import java.util.List;
 import model.CourseSearch;
 import javax.persistence.*;
 import javax.persistence.criteria.*;
-import java.sql.*;
 import java.util.*;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author brusu
  */
+@Stateless
 public class CoursesRepo extends GenericRepo<Course, Long> {
     
+    @PersistenceContext(name="persistenceUnit") 
+    private EntityManager em;
+    @PersistenceUnit(unitName="persistenceUnit")
+    EntityManagerFactory factory;
+
     private Query selectAll;
     
     public CoursesRepo(){
@@ -24,7 +30,10 @@ public class CoursesRepo extends GenericRepo<Course, Long> {
     }
     
     public List<Course> getCourses(){
-        if (selectAll == null)
+        if (em == null){
+            System.out.println("[DEBUG] EntityManager is null");
+        }
+        else if (selectAll == null)
             selectAll = em.createQuery("SELECT c FROM Course c");
         return selectAll.getResultList();
     }

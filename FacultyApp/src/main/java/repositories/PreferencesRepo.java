@@ -3,14 +3,21 @@ package repositories;
 import entities.Preference;
 import entities.PreferenceId;
 import java.util.List;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
  *
  * @author brusu
  */
+@Stateless
 public class PreferencesRepo extends GenericRepo<Preference, PreferenceId> {
 
+    @PersistenceContext(name="persistenceUnit") 
+    private EntityManager em;
     private Query getCourseAllPreferences = null;
     
     public PreferencesRepo() {

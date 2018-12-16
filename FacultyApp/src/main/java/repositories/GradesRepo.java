@@ -3,14 +3,21 @@ package repositories;
 import entities.Grade;
 import entities.GradeId;
 import java.util.List;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
  *
  * @author brusu
  */
+@Stateless
 public class GradesRepo extends GenericRepo<Grade, GradeId> {
     
+    @PersistenceContext(name="persistenceUnit") 
+    private EntityManager em;
     private Query selectForStudent = null;
     private Query selectForCourse = null;
     

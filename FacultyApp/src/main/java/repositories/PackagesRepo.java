@@ -2,14 +2,21 @@ package repositories;
 
 import entities.CoursePackage;
 import java.util.List;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
  *
  * @author brusu
  */
+@Stateless
 public class PackagesRepo extends GenericRepo<CoursePackage, Long> {
     
+    @PersistenceContext(name="persistenceUnit") 
+    private EntityManager em;
     Query selectAll = null;
     
    public PackagesRepo(){
