@@ -3,15 +3,8 @@ package repositories;
 import entities.Preference;
 import entities.PreferenceId;
 import java.util.List;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.ejb.*;
+import javax.persistence.*;
 
 /**
  *
