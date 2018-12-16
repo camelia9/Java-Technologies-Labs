@@ -1,17 +1,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  *
@@ -38,6 +28,9 @@ public class Course implements Serializable {
     private int numberOfCredits;
     @Column(name = "course_url")
     private String courseURL;
+    @Column(name="capacity")
+    private int capacity;
+    
     @ManyToOne
     @JoinColumn(name = "lecturer")
     private Lecturer lecturer;
@@ -52,7 +45,7 @@ public class Course implements Serializable {
         this.id = id;
     }
 
-    public Course(Long id, String abbreviation, String name, int yearStudy, int semester, int numberOfCredits, String courseURL, Lecturer lecturer, CoursePackage coursePackage) {
+    public Course(Long id, String abbreviation, String name, int yearStudy, int semester, int numberOfCredits, String courseURL, int capacity, Lecturer lecturer, CoursePackage coursePackage) {
         this.id = id;
         this.abbreviation = abbreviation;
         this.name = name;
@@ -62,6 +55,7 @@ public class Course implements Serializable {
         this.courseURL = courseURL;
         this.lecturer = lecturer;
         this.coursePackage = coursePackage;
+        this.capacity = capacity;
     }
     
     public String getAbbreviation() {
@@ -134,6 +128,14 @@ public class Course implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     @Override
