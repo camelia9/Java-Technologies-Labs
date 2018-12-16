@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -24,22 +25,20 @@ import repositories.CoursesRepo;
 @Named(value = "coursesBean")
 @SessionScoped
 public class CoursesBean implements Serializable{
+    
+    @EJB
     private CoursesRepo coursesRepo;
     private List<Course> allCourses;
     private CourseSearch courseSearch;
     private List<Course> filteredCourses;
 
     public CoursesBean() {
-        coursesRepo = new CoursesRepo();
-        allCourses = coursesRepo.getCourses();
-        courseSearch = new CourseSearch();
-        
     }
     
      @PostConstruct
     public void init(){
-        
-       /// filteredCourses = new ArrayList();
+        allCourses = coursesRepo.getCourses();
+        courseSearch = new CourseSearch();
     }
 
 
