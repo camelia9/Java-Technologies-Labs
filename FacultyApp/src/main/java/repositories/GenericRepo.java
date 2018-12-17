@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 public class GenericRepo<T, K> {
     
     @PersistenceContext(name="persistenceUnit") 
-    private EntityManager em;
+    protected EntityManager em;
     private Class<T> entityType;
     
     public GenericRepo(Class<T> type){
