@@ -8,7 +8,6 @@ package beans;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-
 /**
  *
  * @author milut
@@ -37,6 +36,4 @@ public class LoginBean implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
 }

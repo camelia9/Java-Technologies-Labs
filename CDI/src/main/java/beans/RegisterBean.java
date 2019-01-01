@@ -9,12 +9,12 @@ import javax.inject.Named;
 @Named(value = "registerBean")
 @SessionScoped
 public class RegisterBean implements Serializable{
-    private String username;
+   private String username;
     private String password;
     private String confirmPassword;
     private String firstName;
     private String lastName;
-
+    
     public RegisterBean() {
     }
 
@@ -57,7 +57,4 @@ public class RegisterBean implements Serializable{
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-     
-     
-  
- }
+}
