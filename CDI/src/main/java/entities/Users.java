@@ -11,6 +11,7 @@ import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,12 +19,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author milut
  */
-
+@Entity
+@Table(name = "users")
 public class Users implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,11 +37,11 @@ public class Users implements Serializable{
     private String username;
     @Column(name = "password", nullable = false, length = -1)
     private String password;
-    @Column(name = "first_name")
+    @Column(name = "firstname")
     private String firstName;
-    @Column(name = "last_name")
+    @Column(name = "lastname")
     private String lastName;
-    @Column(name = "user_type")
+    @Column(name = "usertype")
     private String userType;
 
     
