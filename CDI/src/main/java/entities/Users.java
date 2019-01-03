@@ -43,8 +43,7 @@ public class Users implements Serializable{
     private String lastName;
     @Column(name = "usertype")
     private String userType;
-
-    
+  
     public String getUsername() {
         return username;
     }

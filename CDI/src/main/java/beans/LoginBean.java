@@ -73,15 +73,12 @@ public class LoginBean implements Serializable{
         Users user = usersRepo.validateUser(username, encryptedPas);
         if (user != null) {
             System.out.println("user found: " + user.getUsername());
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-            HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-            System.out.println(session.getAttribute("user"));
             
             if(user.getUserType() == "admin"){
-                return "admin";
+                return "viewAllDocuments";
             }
             else {
-                return "guest";
+                return "upload";
             }
             
         }
