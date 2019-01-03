@@ -29,7 +29,7 @@ public class TrippleDes {
     SecretKey key;
 
     public TrippleDes() throws Exception {
-        myEncryptionKey = "HollySlaySpectacular";
+        myEncryptionKey = "HollySlaySpectacularHollySlaySpectacular";
         myEncryptionScheme = DESEDE_ENCRYPTION_SCHEME;
         arrayBytes = myEncryptionKey.getBytes(UNICODE_FORMAT);
         ks = new DESedeKeySpec(arrayBytes);
