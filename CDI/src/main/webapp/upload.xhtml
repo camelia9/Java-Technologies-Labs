@@ -25,11 +25,11 @@
             <f:validateLength minimum="1" maximum="50"/>
         </h:inputText>
         <br/>
-
-        <p:fileUpload value="#" mode="simple"/>
+        
+        <p:fileUpload value="#{fileUploadBean.file}" mode="simple"/>
         <br/>
 
-        <p:commandButton value="Upload" action="#" ajax="false"/>
+        <p:commandButton value="Upload" action="#{fileUploadBean.save}" ajax="false"/>
         <br/><br/>
         <p:commandButton value="Logout" action="#"/>
     </h:form>
