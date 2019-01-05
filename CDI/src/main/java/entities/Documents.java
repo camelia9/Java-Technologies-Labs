@@ -25,11 +25,13 @@ public class Documents implements Serializable{
     private String title;
     @Column(name = "description", nullable = true, length = -1)
     private String description;
-    @Column(name = "upload_date", nullable = true)
+    @Column(name = "uploaddate")
     private Date uploadDate;
+    
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "uploaded_by")
+    @JoinColumn(name = "uploadedby")
     private Users uploadedBy;
+    
     @Lob
     @Column(name="document")
     @Type(type="org.hibernate.type.BinaryType")

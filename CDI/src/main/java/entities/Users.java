@@ -31,7 +31,7 @@ public class Users implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Long id;
     @Column(name = "username", nullable = false, length = 50)
     private String username;
@@ -43,7 +43,18 @@ public class Users implements Serializable{
     private String lastName;
     @Column(name = "usertype")
     private String userType;
-  
+    
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="uploadedby")
+    private Set<Documents> documents;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -97,5 +108,13 @@ public class Users implements Serializable{
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+    
+    public Set<Documents> getDocuments() {
+        return documents;
+    }
+
+    public void setDocumentsEntities(Set<Documents> documents) {
+        this.documents = documents;
     }
 }

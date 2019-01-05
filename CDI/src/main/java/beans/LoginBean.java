@@ -73,7 +73,6 @@ public class LoginBean implements Serializable{
         Users user = usersRepo.validateUser(username, encryptedPas);
         if (user != null) {
             System.out.println("user found: " + user.getUsername());
-            
             if(user.getUserType() == "admin"){
                 return "viewAllDocuments";
             }
