@@ -16,26 +16,41 @@ import org.hibernate.annotations.Type;
  * @author milut
  */
 
+@Entity
+@Table(name = "documents")
 public class Documents implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @Column(name = "title", nullable = false, length = 100)
+    @Column(name = "filename", nullable = false, length = 100)
     private String title;
     @Column(name = "description", nullable = true, length = -1)
     private String description;
     @Column(name = "uploaddate")
     private Date uploadDate;
     
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "uploadedby")
+    @ManyToOne
+    @JoinColumn(name = "uploadedby", referencedColumnName="username")
     private Users uploadedBy;
     
     @Lob
-    @Column(name="document")
+    @Column(name="file")
     @Type(type="org.hibernate.type.BinaryType")
     private byte[] document;
+
+    public Documents() {
+    }
+
+    public Documents(String title, String description, Date uploadDate, Users uploadedBy, byte[] document) {
+        this.title = title;
+        this.description = description;
+        this.uploadDate = uploadDate;
+        this.uploadedBy = uploadedBy;
+        this.document = document;
+    }
+    
+    
     
     public String getTitle() {
         return title;

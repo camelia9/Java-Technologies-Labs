@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -44,8 +45,8 @@ public class Users implements Serializable{
     @Column(name = "usertype")
     private String userType;
     
-    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="uploadedby")
-    private Set<Documents> documents;
+    @OneToMany(mappedBy="uploadedBy")
+    private List<Documents> documents;
 
     public Long getId() {
         return id;
@@ -110,11 +111,11 @@ public class Users implements Serializable{
         this.userType = userType;
     }
     
-    public Set<Documents> getDocuments() {
+    public List<Documents> getDocuments() {
         return documents;
     }
 
-    public void setDocumentsEntities(Set<Documents> documents) {
+    public void setDocumentsEntities(List<Documents> documents) {
         this.documents = documents;
     }
 }
