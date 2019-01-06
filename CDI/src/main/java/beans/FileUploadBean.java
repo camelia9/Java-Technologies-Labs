@@ -5,13 +5,16 @@
  */
 package beans;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Serializable;
+import entities.Documents;
+import java.io.*;
+import java.sql.Date;
+import java.util.Map;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.Part;
 import org.primefaces.model.UploadedFile;
+import repositories.*;
 /**
  *
  * @author milut
@@ -20,8 +23,22 @@ import org.primefaces.model.UploadedFile;
 @Named(value = "fileUploadBean")
 @SessionScoped
 public class FileUploadBean implements Serializable{
+    @Inject
+    DocumentsRepo docsRepo;
+    @Inject
+    UsersRepo usersRepo;
     
+
     private UploadedFile file;
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
     
     public void setFile(UploadedFile file){
         this.file = file;
@@ -34,16 +51,27 @@ public class FileUploadBean implements Serializable{
     public void save(){
         String fileName = file.getFileName();
         int fileSize = (int)file.getSize();
-        
-        System.out.println("[DEBUG] FILE SIZE " + fileSize);
-        System.out.println("[DEBUG] FILE NAME is " + fileName);
+        System.out.println("[DEBUG] BEGIN");
         try (InputStream input = file.getInputstream()) {
             byte fileBuffer[] = new byte[fileSize];
             int bytesRead = input.read(fileBuffer);
             while(bytesRead < fileSize){
                 bytesRead += input.read(fileBuffer, bytesRead, fileSize - bytesRead);
             }
-            System.out.println("[DEBUG] File content \n" + new String(fileBuffer));
+            
+            FacesContext context = FacesContext.getCurrentInstance();
+            Map<String, Object> requestMap = context.getExternalContext().getSessionMap();
+            String username = (String)requestMap.get("username");
+            
+            if (username != null)
+                docsRepo.insertDocument(
+                        new Documents(
+                                fileName, description, new Date(System.currentTimeMillis()), 
+                                usersRepo.getUser(username), fileBuffer
+                        )
+                );
+            else
+                System.out.println("[DEBUG] OOPS, THERE IS NO USERNAME IN SESSION");
         }
         catch (IOException e) {
             // maybe show in interface
