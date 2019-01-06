@@ -13,15 +13,9 @@
     <p:outputLabel>Upload file</p:outputLabel>
     <br/><br/>
     <h:form enctype="multipart/form-data">
-        <p:outputLabel for="title" value="Title: "/><br/>
-        <h:inputText id="title" value="#" required="true">
-            <f:validateLength minimum="1" maximum="50"/>
-        </h:inputText>
-        <br/>
-        <h:message for="title" /><br/>
 
         <p:outputLabel for="description" value="Description: "/><br/>
-        <h:inputText id="description" value="#">
+        <h:inputText id="description" value="#{fileUploadBean.description}">
             <f:validateLength minimum="1" maximum="50"/>
         </h:inputText>
         <br/>
