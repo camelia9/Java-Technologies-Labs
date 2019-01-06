@@ -10,13 +10,16 @@ import entities.Documents;
 import interceptor.CallInterceptor;
 import java.io.*;
 import java.sql.Date;
+import java.util.List;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.event.Event;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.interceptor.Interceptors;
+import javax.servlet.http.HttpSession;
 import org.primefaces.model.UploadedFile;
 import repositories.*;
 /**
@@ -36,9 +39,22 @@ public class FileUploadBean implements Serializable{
     @Inject
     private Event<FileStream> streamer;
     
+    private List<Documents> documents;
 
     private UploadedFile file;
     private String description;
+    
+    @PostConstruct
+    public void init(){
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        Map<String, Object> requestMap = facesContext.getExternalContext().getSessionMap();
+        String usertype = (String)requestMap.get("usertype");
+        if(usertype.startsWith("a")){
+            System.out.println("[DEBUG] GET DOCUMENTS LIST");
+            documents = docsRepo.getAllDocuments();
+        }
+        
+    }
 
     public String getDescription() {
         return description;
@@ -55,6 +71,16 @@ public class FileUploadBean implements Serializable{
     public UploadedFile getFile(){
         return this.file;
     }
+
+    public List<Documents> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(List<Documents> documents) {
+        this.documents = documents;
+    }
+    
+    
     
     @Interceptors({CallInterceptor.class})
     public void save(){

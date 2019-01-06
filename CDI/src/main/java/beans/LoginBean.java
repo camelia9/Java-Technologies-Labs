@@ -78,7 +78,8 @@ public class LoginBean implements Serializable{
             ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
             Map<String, Object> sessionMap = externalContext.getSessionMap();
             sessionMap.put("username", user.getUsername());
-            if(user.getUserType() == "admin"){
+            sessionMap.put("usertype", user.getUserType());
+            if(user.getUserType().startsWith("a")){
                 return "viewAllDocuments";
             }
             else {

@@ -17,36 +17,32 @@
     <br/><br/>
 
     <h:form id="form">
-        <p:dataTable var="document" scrollable="true" scrollHeight="300" value="#" selectionMode="single"
-                     rowKey="#" selection="#">
+        <p:dataTable var="document" scrollable="true" scrollHeight="300" value="#{fileUploadBean.documents}">
             <p:column headerText="Registration number">
-                <h:outputText value = "#"/>
+                <h:outputText value = "#{document.id}"/>
             </p:column>
 
             <p:column headerText="Title">
-                <h:outputText value = "#"/>
+                <h:outputText value = "#{document.title}"/>
             </p:column>
 
             <p:column headerText="Description">
-                <h:outputText value = "#"/>
+                <h:outputText value = "#{document.description}"/>
             </p:column>
 
             <p:column headerText="Uploaded By">
-                <h:outputText value = "#"/>
+                <h:outputText value = "#{document.uploadedBy}"/>
             </p:column>
 
             <p:column headerText="Uploaded Date">
-                <h:outputText value = "#"/>
+                <h:outputText value = "#{document.uploadDate}"/>
             </p:column>
 
             <f:facet name="footer">
-                <p:commandButton icon="ui-icon-trash" value="Delete" update=":form" action="#"/>
+               
             </f:facet>
         </p:dataTable>
     </h:form>
 
-    <p:commandButton value="Upload file" action="#"/>
-    <br/><br/>
-    <p:commandButton value="Logout" action="#"/>
 </h:body>
 </html>

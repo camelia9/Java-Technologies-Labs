@@ -118,4 +118,9 @@ public class Users implements Serializable{
     public void setDocumentsEntities(List<Documents> documents) {
         this.documents = documents;
     }
+    
+    @Override
+    public String toString() {
+        return this.username;
+    }
 }
