@@ -7,8 +7,10 @@ package beans;
 
 import entities.Users;
 import java.io.Serializable;
+import java.util.Map;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -73,6 +75,9 @@ public class LoginBean implements Serializable{
         Users user = usersRepo.validateUser(username, encryptedPas);
         if (user != null) {
             System.out.println("user found: " + user.getUsername());
+            ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+            Map<String, Object> sessionMap = externalContext.getSessionMap();
+            sessionMap.put("username", user.getUsername());
             if(user.getUserType() == "admin"){
                 return "viewAllDocuments";
             }
