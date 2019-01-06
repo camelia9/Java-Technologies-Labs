@@ -30,6 +30,13 @@ public class UsersRepo {
         Query q = entityManager.createQuery("select u from Users u");
         return q.getResultList();
     }
+    
+    public Users getUser(String username){
+        List<Users> users = entityManager.createQuery("FROM Users u WHERE u.username LIKE :username")
+                        .setParameter("username", username)
+                        .getResultList();
+        return users.isEmpty() ? null : users.get(0);
+    }
 
     public void insertUser(Users user){
         entityManager.persist(user);
