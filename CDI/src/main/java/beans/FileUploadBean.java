@@ -5,14 +5,18 @@
  */
 package beans;
 
+import dto.*;
 import entities.Documents;
+import interceptor.CallInterceptor;
 import java.io.*;
 import java.sql.Date;
 import java.util.Map;
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.event.Event;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.interceptor.Interceptors;
 import org.primefaces.model.UploadedFile;
 import repositories.*;
 /**
@@ -27,6 +31,10 @@ public class FileUploadBean implements Serializable{
     DocumentsRepo docsRepo;
     @Inject
     UsersRepo usersRepo;
+    @Inject
+    private Event<LogEntry> logger;
+    @Inject
+    private Event<FileStream> streamer;
     
 
     private UploadedFile file;
@@ -48,28 +56,30 @@ public class FileUploadBean implements Serializable{
         return this.file;
     }
     
+    @Interceptors({CallInterceptor.class})
     public void save(){
         String fileName = file.getFileName();
         int fileSize = (int)file.getSize();
-        System.out.println("[DEBUG] BEGIN");
-        try (InputStream input = file.getInputstream()) {
-            byte fileBuffer[] = new byte[fileSize];
-            int bytesRead = input.read(fileBuffer);
-            while(bytesRead < fileSize){
-                bytesRead += input.read(fileBuffer, bytesRead, fileSize - bytesRead);
-            }
+       System.out.println("[DEBUG] Directory: " + System.getProperty("user.dir"));
+        try {
+            InputStream input = file.getInputstream();
             
             FacesContext context = FacesContext.getCurrentInstance();
             Map<String, Object> requestMap = context.getExternalContext().getSessionMap();
             String username = (String)requestMap.get("username");
             
-            if (username != null)
-                docsRepo.insertDocument(
-                        new Documents(
-                                fileName, description, new Date(System.currentTimeMillis()), 
-                                usersRepo.getUser(username), fileBuffer
-                        )
-                );
+            FileStream fileStream = new FileStream(fileSize, username, fileName, description, input);
+            
+            if (username != null){
+                System.out.println("[DEBUG] SEND EVENT TO SAVE TO DB");
+                streamer.fire(fileStream);
+                LogEntry log = new LogEntry("File arrived on server")
+                        .addAdditionalData("Uploaded by", username)
+                        .addAdditionalData("File name", fileName)
+                        .addAdditionalData("File size", String.valueOf(fileSize));
+                System.out.println("[DEBUG] SEND EVENT TO LOG");
+                logger.fire(log);
+            }
             else
                 System.out.println("[DEBUG] OOPS, THERE IS NO USERNAME IN SESSION");
         }
