@@ -21,6 +21,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -28,6 +30,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "users")
+@XmlRootElement
 public class Users implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
@@ -111,6 +114,7 @@ public class Users implements Serializable{
         this.userType = userType;
     }
     
+    @XmlTransient
     public List<Documents> getDocuments() {
         return documents;
     }

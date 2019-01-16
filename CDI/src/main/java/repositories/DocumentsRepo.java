@@ -20,7 +20,7 @@ import javax.persistence.Query;
 @Stateless
 public class DocumentsRepo {
     
-    @PersistenceContext(name="persistenceUnit") 
+    @PersistenceContext(name="persistence-unit") 
     private EntityManager entityManager;
     
     private Query selectAll;
@@ -38,5 +38,11 @@ public class DocumentsRepo {
             System.out.println(selectAll.getResultList());
         }
         return selectAll.getResultList();
+    }
+    
+    public List<Documents>findDocumentsByUsername(String username){
+        Query q = entityManager.createQuery("select d from DocumentsEntity d where d.uploadedby = :username");
+        q.setParameter("username", username);
+        return q.getResultList();
     }
 }

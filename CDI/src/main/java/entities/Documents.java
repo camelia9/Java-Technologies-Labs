@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.annotations.Type;
 /**
  *
@@ -18,6 +19,7 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "documents")
+@XmlRootElement
 public class Documents implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

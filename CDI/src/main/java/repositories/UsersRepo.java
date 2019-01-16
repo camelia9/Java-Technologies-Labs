@@ -23,7 +23,7 @@ import javax.persistence.Query;
 
 @Stateless
 public class UsersRepo {
-    @PersistenceContext(name="persistenceUnit") 
+    @PersistenceContext(name="persistence-unit") 
     private EntityManager entityManager;
     
     public List<Users> getUsers(){
