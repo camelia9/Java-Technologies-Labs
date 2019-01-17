@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import utils.AuthenticationUtils;
+
 @Stateless
 public class UserEJB {
 	
@@ -22,7 +23,7 @@ public class UserEJB {
 	public User createUser(User user) {
 		try {
 			user.setPassword((user.getPassword()));
-                        System.out.println("[Debug nu mai vreau si imi e somn] " + user.getUserid() + " " + user.getPassword());
+                        System.out.println("[Debug] " + user.getUserid() + " " + user.getPassword());
 		} catch (Exception e) {
 			Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
 			e.printStackTrace();

@@ -5,6 +5,7 @@
  */
 package managedBeans;
 
+import beans.UserAccess;
 import beans.UserEJB;
 import entities.User;
 import java.io.Serializable;
@@ -29,6 +30,9 @@ public class RegisterView implements Serializable {
 
 	@Inject
 	private UserEJB userEJB;
+        
+        @Inject
+        private UserAccess userAccess;
 
 	private String name;
 	private String email;
@@ -71,6 +75,10 @@ public class RegisterView implements Serializable {
 		}
 
 	}
+        
+        public String userType(){
+            return userAccess.changeSomething();
+        }
 
 	public String register() {
 		User user = new User(email, password, name);

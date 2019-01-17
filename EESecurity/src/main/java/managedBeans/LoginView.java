@@ -38,11 +38,11 @@ public class LoginView implements Serializable {
 		System.out.println("[DEBUG]" + email + '\t' + password );
                 try {
   
-                        System.out.println("[DEBUG aproapecel mai naspa]"+userEJB.findUserById(email).getPassword());
+                        System.out.println("[DEBUG]"+userEJB.findUserById(email).getPassword());
 			request.login(email, password);
                         
 		} catch (ServletException e) {
-                        System.out.println("[DEBUG fail exception cel mai naspa]" + e + '\t');
+                        System.out.println("[DEBUG]" + e + '\t');
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login failed!", null));
 			return "signin";
 		}
