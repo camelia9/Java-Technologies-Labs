@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Search courses</title>
+</h:head>
+
+    <h:body>
+   <p:outputLabel value="Search courses"/>
+        <br/><br/>
+        <h:form id="form">
+            <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+                <h:outputLabel for="name" value="Course name: " />
+                <h:inputText id = "name" value="#{coursesBean.courseSearch.name}"/>
+                <p:selectBooleanCheckbox value="#{coursesBean.courseSearch.isNameSelected}" />
+            </h:panelGrid>
+            <h:commandButton value="Search" action="#{coursesBean.filterCourses}"/>
+        </h:form>
+</h:body>
+</html>

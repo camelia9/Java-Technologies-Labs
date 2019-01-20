@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>All students</title>
+</h:head>
+<h:body>
+       <p:outputLabel value="Students list"/>
+            <br/><br/>
+            <h:form id="form">
+                <p:dataTable var="student" scrollable="true" scrollHeight="300"  value="#{studentsBean.allStudents}" lazy ="true">
+                    <p:column headerText="ID">
+                        <h:outputText value = "#{student.id}"/>
+                    </p:column>
+
+                    <p:column headerText="Name">
+                        <h:outputText value = "#{student.name}"/>
+                    </p:column>
+
+                    <p:column headerText="Email">
+                        <h:outputText value = "#{student.email}"/>
+                    </p:column>
+
+
+                    <f:facet name="footer">
+                        <p:commandButton icon="ui-icon-pencil" ajax="false" value="Edit" action="/editStudent.xhtml"/>
+                        <p:commandButton icon="ui-icon-trash" value="Delete" update=":form" action="#"/>
+                    </f:facet>
+                </p:dataTable>
+            </h:form>
+
+            <p:commandButton update="form" value="Add student" action="#"/>
+    </h:body>
+</html>
